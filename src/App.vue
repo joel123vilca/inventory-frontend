@@ -7,7 +7,9 @@
           <Header/>
         </el-header>
         <el-main class="contenedor-principal">
-          <Main/>
+          <router-view>
+            <Main/>
+          </router-view>
         </el-main>
       </el-container>
     </el-container>

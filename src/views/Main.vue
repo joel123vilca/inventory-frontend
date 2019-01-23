@@ -8,12 +8,7 @@
           </div>
         </el-col>
         <el-col :span="14">
-          <el-button
-            type="warning"
-            round
-            icon="el-icon-plus"
-            @click="dialogFormVisible = true"
-          >Añadir</el-button>
+          <el-button type="warning" round icon="el-icon-plus" @click="modal=!modal">Añadir</el-button>
         </el-col>
         <el-col :span="8">
           <div class="grid-content bg-purple">
@@ -128,6 +123,7 @@
         <el-button type="primary" @click="dialogFormVisible = false" icon="el-icon-check">Guardar</el-button>
       </span>
     </el-dialog>-->
+    <AddModalProduct/>
   </div>
 </template>
 
@@ -137,15 +133,18 @@ export default {
   components: {
     AddModalProduct
   },
+
   data() {
     return {
-      dialogTableVisible: false,
-      dialogFormVisible: false,
       dialogVisible: false,
+      showScheduleForm: true,
+      dialogTableVisible: false,
+
+      dialogFormVisible: false,
+      //   dialogVisible: false,
       tableData: [
         {
           date: "2016-05-03",
-          name: "Tom",
           address: "No. 189, Grove St, Los Angeles"
         },
         {
@@ -165,6 +164,21 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    openDeleteDialog() {
+      this.dialogVisible = true;
+    }
+  },
+  computed: {
+    modal: {
+      get() {
+        return this.$store.getters.getModal;
+      },
+      set(value) {
+        this.$store.dispatch("updateStateModal", value);
+      }
+    }
   }
 };
 </script>
