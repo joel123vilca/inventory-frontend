@@ -8,7 +8,12 @@
           </div>
         </el-col>
         <el-col :span="14">
-          <el-button type="warning" round icon="el-icon-plus" @click="modal=!modal">Añadir</el-button>
+          <el-button
+            type="warning"
+            round
+            icon="el-icon-plus"
+            @click="modalCreate=!modalCreate"
+          >Añadir</el-button>
         </el-col>
         <el-col :span="8">
           <div class="grid-content bg-purple">
@@ -145,6 +150,7 @@ export default {
       tableData: [
         {
           date: "2016-05-03",
+          name: "Aldo",
           address: "No. 189, Grove St, Los Angeles"
         },
         {
@@ -165,15 +171,11 @@ export default {
       ]
     };
   },
-  methods: {
-    openDeleteDialog() {
-      this.dialogVisible = true;
-    }
-  },
+
   computed: {
-    modal: {
+    modalCreate: {
       get() {
-        return this.$store.getters.getModal;
+        return this.$store.getters.getModalCreate;
       },
       set(value) {
         this.$store.dispatch("updateStateModal", value);

@@ -1,5 +1,5 @@
 <template>
-  <el-dialog title="Media Manager" :visible.sync="modalOpen" :close-on-click-modal="false">
+  <el-dialog title="Media Manager" :visible.sync="modalOpenCreate" :close-on-click-modal="false">
     <el-form :model="form" class="formulario-creación" :label-position="labelPosition">
       <el-container>
         <el-row :gutter="30">
@@ -101,12 +101,12 @@ export default {
   },
   methods: {
     changeState() {
-      this.$store.dispatch("updateStateModal", !this.modalOpen);
+      this.$store.dispatch("updateStateModal", !this.modalOpenCreate);
     }
   },
   computed: {
-    modalOpen() {
-      return this.$store.state.modalOpen;
+    modalOpenCreate() {
+      return this.$store.state.modalOpenCreate;
     }
   }
 };

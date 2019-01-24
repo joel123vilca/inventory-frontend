@@ -9,13 +9,14 @@
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
+      :router="true"
     >
-      <el-menu-item index="1" active>
+      <el-menu-item index="1" active :route="{name:'home'}">
         <i class="el-icon-menu"></i>
         <span>Productos</span>
       </el-menu-item>
 
-      <el-menu-item index="2">
+      <el-menu-item index="2" :route="{name:'brands'}">
         <i class="el-icon-menu"></i>
         <span>Marcas</span>
       </el-menu-item>
