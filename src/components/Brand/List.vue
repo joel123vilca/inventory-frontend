@@ -33,7 +33,7 @@
             <i class="el-icon-view"></i>
           </el-button>
 
-          <el-button size="small" type="warning" @click="modalEdit=!modalEdit">
+          <el-button size="small" type="warning" @click="handleEdit(scope.$index, scope.row)">
             <i class="el-icon-edit"></i>
           </el-button>
 
@@ -81,6 +81,17 @@ export default {
   },
   created() {
     this.$store.dispatch("getBrands");
+  },
+  methods: {
+    handleEdit(index, row) {
+      console.log(index, row.id);
+      this.$store.dispatch("getDetailBrand", row.id);
+      this.modalEdit = !this.modalEdit;
+    },
+    handleDelete(index, row) {
+      //   console.log("aholaaaaaaaaa");
+      this.$store.dispatch("deleteBrand", row.id);
+    }
   },
   computed: {
     brands() {
