@@ -57,6 +57,7 @@ export default new Vuex.Store({
         })
       },
       createBrand({commit,dispatch},payload){
+        //   console.log(payload.errors.set());
         brandAPI
         .post(payload)
         .then(response => {
@@ -108,7 +109,8 @@ export default new Vuex.Store({
               resolve(response)
             })
             .catch(error => {
-              reject(error)
+              // reject(error)
+              console.log('errorxD');
             })
         })
     },

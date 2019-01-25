@@ -15,16 +15,21 @@ export default {
     },
     post(payload = {}) {
         // const vForm = payload.vForm || {}
-    
+    console.log(payload);
         return new Promise((resolve, reject) => {
           axios({
             url: `${HOST}/brands`,
             method: 'post',
             data: payload
           })
-            .then(response => resolve(response))
+            .then(response => {
+                payload.reset(),
+                payload.clear(),
+                resolve(response)}
+            )
             .catch(error => {
-            //   vForm.errors.set(vForm.extractErrors(error.response))
+                console.log(payload);
+              payload.errors.set(payload.extractErrors(error.response));
               reject(error)
             })
         })
@@ -41,8 +46,8 @@ export default {
         })
     },
     update(payload = {}) {
+        console.log(payload.name);
         const brandId = payload.id || {}
-        // const vForm = payload.vForm || {}
 
         return new Promise((resolve, reject) => {
           axios({
@@ -52,7 +57,8 @@ export default {
           })
             .then(response => resolve(response))
             .catch(error => {
-            //   vForm.errors.set(vForm.extractErrors(error.response))
+                // console.log(payload);
+              payload.errors.set(payload.extractErrors(error.response));
               reject(error)
             })
         })

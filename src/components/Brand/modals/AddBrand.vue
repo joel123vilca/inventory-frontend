@@ -10,8 +10,14 @@
         <el-row style="width:100%">
           <el-col :span="24">
             <el-form-item label="Nombre" :label-width="formLabelWidth">
-              <el-input v-model="form.name" autocomplete="off" autofocus></el-input>
+              <el-input
+                v-model="form.name"
+                :class="form.errors.has('name') ? 'error-color' : ''"
+                autocomplete="off"
+                autofocus
+              ></el-input>
               {{form.name}}
+              <has-error :form="form" field="name" style="color:red"></has-error>
             </el-form-item>
           </el-col>
         </el-row>
@@ -28,18 +34,27 @@
 <script>
 import { mapState, mapActions } from "vuex";
 
+import { Form, HasError, AlertError } from "vform";
+
+// Vue.component(HasError.name, HasError);
+// Vue.component(AlertError.name, AlertError);
+
 export default {
   data() {
     return {
       labelPosition: "left",
-      form: {
+
+      //   form: {
+      //     name: ""
+      //   },
+      form: new Form({
         name: ""
-      },
+      }),
       formLabelWidth: "120px"
     };
   },
   methods: {
-    ...mapActions(["createBrand", "updateStateModal", "updateStateModal"])
+    ...mapActions(["createBrand", "updateStateModal"])
     // changeState() {
     //   this.updateStateModal(!this.modalOpenCreate);
     // }
@@ -57,5 +72,8 @@ export default {
 <style scoped>
 .el-row {
   width: 100%;
+}
+.error-color {
+  border-color: red;
 }
 </style>

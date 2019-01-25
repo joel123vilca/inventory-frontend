@@ -6,6 +6,7 @@
           <el-col :span="24">
             <el-form-item label="Nombre" :label-width="formLabelWidth">
               <el-input v-model="brand.name" autocomplete="off" autofocus></el-input>
+              <has-error :form="form" field="name" style="color:red"></has-error>
             </el-form-item>
           </el-col>
         </el-row>
@@ -14,29 +15,34 @@
 
     <span slot="footer" class="dialog-footer">
       <el-button @click="updateStateModalEdit(!modalOpenEdit)">Cancel</el-button>
-      <el-button type="primary" @click="updateBrand(brand)" icon="el-icon-check">Guardar</el-button>
+      <el-button type="primary" @click="enviar()" icon="el-icon-check">Guardar</el-button>
     </span>
   </el-dialog>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
+import { Form, HasError, AlertError } from "vform";
 export default {
   data() {
     return {
       labelPosition: "left",
-      form: {
+      //   form: {
+      //     name: ""
+      //   },
+      form: new Form({
         name: ""
-      },
+      }),
       formLabelWidth: "120px"
     };
   },
   methods: {
-    ...mapActions([
-      "updateBrand",
-      "updateStateModalEdit",
-      "updateStateModalEdit"
-    ])
+    ...mapActions(["updateBrand", "updateStateModalEdit"]),
+    enviar() {
+      this.form.id = this.brand.id;
+      this.form.name = this.brand.name;
+      this.updateBrand(this.form);
+    }
     // changeState() {
     //   //   this.$store.dispatch("updateStateModalEdit", !this.modalOpenEdit);
     //   this.updateStateModalEdit(!this.modalOpenEdit);

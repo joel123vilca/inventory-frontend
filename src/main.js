@@ -5,10 +5,14 @@ import store from '@/store/index'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+import { Form, HasError, AlertError } from "vform";
 
 import locale from 'element-ui/lib/locale/lang/en'
 
 Vue.use(ElementUI,{locale});
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+
 
 Vue.config.productionTip = false
 
