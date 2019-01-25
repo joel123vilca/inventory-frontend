@@ -11,7 +11,7 @@
       @close="handleClose"
       :router="true"
     >
-      <el-menu-item index="1" active :route="{name:'home'}">
+      <el-menu-item index="1" active :route="{name:'products'}">
         <i class="el-icon-menu"></i>
         <span>Productos</span>
       </el-menu-item>

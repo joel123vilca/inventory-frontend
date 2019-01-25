@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import brandAPI from '@/api/brands';
+// import ProductAPI from '@/api/brands';
 
 Vue.use(Vuex)
 
@@ -22,10 +23,8 @@ export default new Vuex.Store({
         state.brands = brands
     },
     GET_BRAND(state,{brand}){
-        // console.log(brand);
         state.brand=brand
     }
-
   },
 
   getters:{

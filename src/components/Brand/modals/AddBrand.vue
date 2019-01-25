@@ -19,13 +19,15 @@
     </el-form>
 
     <span slot="footer" class="dialog-footer">
-      <el-button @click="changeState">Cancel</el-button>
-      <el-button type="primary" @click="saveBrand" icon="el-icon-check">Guardar</el-button>
+      <el-button @click="updateStateModal(!modalOpenCreate)">Cancel</el-button>
+      <el-button type="primary" @click="createBrand(form)" icon="el-icon-check">Guardar</el-button>
     </span>
   </el-dialog>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -37,17 +39,17 @@ export default {
     };
   },
   methods: {
-    changeState() {
-      this.$store.dispatch("updateStateModal", !this.modalOpenCreate);
-    },
-    saveBrand() {
-      this.$store.dispatch("createBrand", this.form);
-    }
+    ...mapActions(["createBrand", "updateStateModal", "updateStateModal"])
+    // changeState() {
+    //   this.updateStateModal(!this.modalOpenCreate);
+    // }
+    // saveBrand() {
+    //   this.createBrand(this.form);
+    //   this.$store.dispatch("createBrand", this.form);
+    // }
   },
   computed: {
-    modalOpenCreate() {
-      return this.$store.state.modalOpenCreate;
-    }
+    ...mapState(["modalOpenCreate"])
   }
 };
 </script>

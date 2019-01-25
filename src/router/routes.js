@@ -12,6 +12,11 @@ export default[
         name: 'brands',
         component: ListBrand
       },
+      {
+        path: '/products',
+        name: 'products',
+        component: Main
+      },
     {
       path: '/about',
       name: 'about',

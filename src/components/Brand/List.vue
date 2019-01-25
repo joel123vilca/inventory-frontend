@@ -17,13 +17,17 @@
         </el-col>
         <el-col :span="8">
           <div class="grid-content bg-purple">
-            <el-input placeholder="Type something" prefix-icon="el-icon-search" v-model="input21"></el-input>
+            <el-input placeholder="Type something" prefix-icon="el-icon-search" v-model="search"></el-input>
           </div>
         </el-col>
       </el-row>
     </el-container>
 
-    <el-table v-loading="false" :data="brands" style="width: 100%">
+    <el-table
+      v-loading="false"
+      :data="brands.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+      style="width: 100%"
+    >
       <el-table-column label="ID" prop="id"></el-table-column>
       <el-table-column label="Name" prop="name"></el-table-column>
 
@@ -52,6 +56,7 @@
 <script>
 import AddBrand from "@/components/Brand/modals/AddBrand";
 import EditBrand from "@/components/Brand/modals/EditBrand";
+import { mapState, mapActions } from "vuex";
 
 export default {
   components: {
@@ -60,43 +65,25 @@ export default {
   },
   data() {
     return {
-      labelPosition: "left",
-      variable: 0,
       search: "",
-      loading: "false",
-      dialogTableVisible: false,
-      dialogFormVisible: false,
-      form: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: ""
-      },
-      formLabelWidth: "120px"
+      loading: "false"
     };
   },
   created() {
-    this.$store.dispatch("getBrands");
+    this.getBrands();
   },
   methods: {
+    ...mapActions(["getBrands", "getDetailBrand", "deleteBrand"]),
     handleEdit(index, row) {
-      console.log(index, row.id);
-      this.$store.dispatch("getDetailBrand", row.id);
+      this.getDetailBrand(row.id);
       this.modalEdit = !this.modalEdit;
     },
     handleDelete(index, row) {
-      //   console.log("aholaaaaaaaaa");
-      this.$store.dispatch("deleteBrand", row.id);
+      this.deleteBrand(row.id);
     }
   },
   computed: {
-    brands() {
-      return this.$store.state.brands;
-    },
+    ...mapState(["brands"]),
     modalCreate: {
       get() {
         return this.$store.getters.getModalCreate;
