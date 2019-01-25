@@ -21,7 +21,7 @@
         <span>Marcas</span>
       </el-menu-item>
 
-      <el-menu-item index="3">
+      <el-menu-item index="3" :route="{name:'areas'}">
         <i class="el-icon-menu"></i>
         <span>Areas</span>
       </el-menu-item>

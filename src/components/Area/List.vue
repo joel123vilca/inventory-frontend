@@ -4,7 +4,7 @@
       <el-row type="flex" class="row-bg" justify="space-around" :gutter="20">
         <el-col :span="4">
           <div class="grid-content">
-            <h2 class="texto-principal">Marcas</h2>
+            <h2 class="texto-principal">Areas</h2>
           </div>
         </el-col>
         <el-col :span="14">
@@ -17,7 +17,7 @@
         </el-col>
         <el-col :span="8">
           <div class="grid-content bg-purple">
-            <el-input placeholder="Type something" prefix-icon="el-icon-search" v-model="search"></el-input>
+            <el-input placeholder="Buscar Area" prefix-icon="el-icon-search" v-model="search"></el-input>
           </div>
         </el-col>
       </el-row>
@@ -25,12 +25,12 @@
 
     <el-table
       v-loading="false"
-      :data="brands.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+      :data="areas.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%"
     >
-      <el-table-column label="ID" prop="id"></el-table-column>
+      <el-table-column type="index" width="50"></el-table-column>
       <el-table-column label="Name" prop="name"></el-table-column>
-
+      <el-table-column label="Encargado" prop="person_in_charge"></el-table-column>
       <el-table-column label="Acciones">
         <template slot-scope="scope">
           <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">
@@ -48,20 +48,20 @@
       </el-table-column>
     </el-table>
 
-    <AddBrand/>
-    <EditBrand/>
+    <AddArea/>
+    <EditArea/>
   </div>
 </template>
 
 <script>
-import AddBrand from "@/components/Brand/modals/AddBrand";
-import EditBrand from "@/components/Brand/modals/EditBrand";
+import AddArea from "@/components/Area/modals/AddArea";
+import EditArea from "@/components/Area/modals/EditArea";
 import { mapState, mapActions } from "vuex";
 
 export default {
   components: {
-    AddBrand,
-    EditBrand
+    AddArea,
+    EditArea
   },
   data() {
     return {
@@ -70,26 +70,26 @@ export default {
     };
   },
   created() {
-    this.getBrands();
+    this.getAreas();
   },
   methods: {
-    ...mapActions("brands", ["getBrands", "getDetailBrand", "deleteBrand"]),
+    ...mapActions("areas", ["getAreas", "getDetailArea", "deleteArea"]),
     handleEdit(index, row) {
-      this.getDetailBrand(row.id);
+      this.getDetailArea(row.id);
       this.modalEdit = !this.modalEdit;
     },
     handleDelete(index, row) {
-      this.deleteBrand(row.id);
+      this.deleteArea(row.id);
     }
   },
   computed: {
-    ...mapState("brands", ["brands"]),
+    ...mapState("areas", ["areas"]),
     modalCreate: {
       get() {
         return this.$store.getters.getModalCreate;
       },
       set(value) {
-        this.$store.dispatch("brands/updateStateModal", value);
+        this.$store.dispatch("areas/updateStateModal", value);
       }
     },
     modalEdit: {
@@ -97,7 +97,7 @@ export default {
         return this.$store.getters.getModalEdit;
       },
       set(value) {
-        this.$store.dispatch("brands/updateStateModalEdit", value);
+        this.$store.dispatch("areas/updateStateModalEdit", value);
       }
     }
   }

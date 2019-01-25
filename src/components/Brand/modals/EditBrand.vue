@@ -37,7 +37,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["updateBrand", "updateStateModalEdit"]),
+    ...mapActions("brands", ["updateBrand", "updateStateModalEdit"]),
     enviar() {
       this.form.id = this.brand.id;
       this.form.name = this.brand.name;
@@ -53,7 +53,7 @@ export default {
     // }
   },
   computed: {
-    ...mapState(["modalOpenEdit", "brand"])
+    ...mapState("brands", ["modalOpenEdit", "brand"])
   }
 };
 </script>

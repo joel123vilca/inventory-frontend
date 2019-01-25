@@ -54,7 +54,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["createBrand", "updateStateModal"])
+    ...mapActions("brands", ["createBrand", "updateStateModal"])
     // changeState() {
     //   this.updateStateModal(!this.modalOpenCreate);
     // }
@@ -64,7 +64,7 @@ export default {
     // }
   },
   computed: {
-    ...mapState(["modalOpenCreate"])
+    ...mapState("brands", ["modalOpenCreate"])
   }
 };
 </script>
