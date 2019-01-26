@@ -7,7 +7,7 @@ export default {
     get() {
         return new Promise((resolve, reject) => {
           axios
-            .get(`${HOST}/brands`)
+            .get(`${HOST}/products`)
             .then(response => {
                 resolve(response)})
             .catch(error => reject(error))
@@ -15,55 +15,60 @@ export default {
     },
     post(payload = {}) {
         // const vForm = payload.vForm || {}
-    
+    console.log(payload);
         return new Promise((resolve, reject) => {
           axios({
-            url: `${HOST}/brands`,
+            url: `${HOST}/products`,
             method: 'post',
             data: payload
           })
-            .then(response => resolve(response))
+            .then(response => {
+              payload.reset(),
+              payload.clear(),
+              resolve(response)
+            })
             .catch(error => {
-            //   vForm.errors.set(vForm.extractErrors(error.response))
+              payload.errors.set(payload.extractErrors(error.response))
               reject(error)
             })
         })
     },
 
     getDetail(payload = {}) {
-        const brandId = payload || {}
-        console.log(brandId);
+        const productId = payload || {}
+        console.log(productId);
         return new Promise((resolve, reject) => {
           axios
-            .get(`${HOST}/brands/${brandId}`)
+            .get(`${HOST}/products/${productId}`)
             .then(response => resolve(response))
             .catch(error => reject(error))
         })
     },
     update(payload = {}) {
-        const brandId = payload.id || {}
+        const productId = payload.id || {}
+        console.log(payload);
         // const vForm = payload.vForm || {}
 
         return new Promise((resolve, reject) => {
           axios({
-            url: `${HOST}/brands/${brandId}`,
+            url: `${HOST}/products/${productId}`,
             method: 'put',
             data: payload
           })
             .then(response => resolve(response))
             .catch(error => {
-            //   vForm.errors.set(vForm.extractErrors(error.response))
+              payload.errors.set(payload.extractErrors(error.response))
               reject(error)
             })
         })
     },
     
     delete(payload = {}) {
-        const brandId = payload || {}
-    
+        const productId = payload || {}
+        // console.log(payload);
         return new Promise((resolve, reject) => {
           axios({
-            url: `${HOST}/brands/${brandId}`,
+            url: `${HOST}/products/${productId}`,
             method: 'delete'
           })
             .then(response => resolve(response))

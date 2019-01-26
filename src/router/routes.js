@@ -1,5 +1,6 @@
 import ListBrand from '@/components/Brand/List.vue'
 import ListArea from '@/components/Area/List.vue';
+import ListProduct from '@/components/Product/List.vue';
 import Main from '@/views/Main.vue'
 
 export default[
@@ -16,7 +17,7 @@ export default[
       {
         path: '/products',
         name: 'products',
-        component: Main
+        component: ListProduct
       },
       {
         path: '/areas',
