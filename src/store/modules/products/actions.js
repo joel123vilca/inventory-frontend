@@ -7,11 +7,15 @@ export const updateStateModalEdit = ({commit},value)=>{
   commit('UPDATE_STATE_MODAL_EDIT',value)
 }
 
+export const updateStateLoadingTable = ({commit},value)=>{
+  commit('UPDATE_STATE_LOADING_TABLE',value)
+}
+
 export const getProducts = ({commit},payload)=>{
   productAPI
   .get(payload)
   .then(response => {
-  
+    commit('UPDATE_STATE_LOADING_TABLE',false)
     commit('GET_PRODUCTS', { products: response.data.data });
   })
   .catch(() => {
@@ -24,6 +28,7 @@ export const createProduct = ({commit,dispatch},payload)=>{
   .post(payload)
   .then(response => {
       commit('UPDATE_STATE_MODAL_CREATE',false)
+      commit('UPDATE_STATE_LOADING_TABLE',true)
     dispatch("getProducts");
   })
   .catch(() => {

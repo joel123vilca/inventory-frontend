@@ -22,10 +22,10 @@
         </el-col>
       </el-row>
     </el-container>
-
     <el-table
-      v-loading="false"
-      :data="products.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+      v-loading="loadingTable"
+      element-loading-text="Cargando ..."
+      :data="products.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()) || data.category.toLowerCase().includes(search.toLowerCase()) )"
       style="width: 100%"
     >
       <el-table-column label="ID" prop="id"></el-table-column>
@@ -67,8 +67,8 @@ export default {
   },
   data() {
     return {
-      search: "",
-      loading: "false"
+      search: ""
+      // loading: "false"
     };
   },
   created() {
@@ -89,12 +89,36 @@ export default {
       this.modalEdit = !this.modalEdit;
     },
     handleDelete(index, row) {
-      console.log(row.id);
-      this.deleteProduct(row.id);
+      this.$confirm(
+        "This will permanently delete the file. Continue?",
+        "Warning",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      )
+        .then(() => {
+          this.deleteProduct(row.id).then(() => {
+            this.$message({
+              type: "success",
+              message: "Delete completed"
+            });
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "Delete canceled"
+          });
+        });
+
+      // console.log(row.id);
+      // this.deleteProduct(row.id);
     }
   },
   computed: {
-    ...mapState("products", ["products"]),
+    ...mapState("products", ["products", "loadingTable"]),
     ...mapState("brands", ["brands"]),
     modalCreate: {
       get() {

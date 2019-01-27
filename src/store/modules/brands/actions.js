@@ -7,11 +7,15 @@ export const updateStateModalEdit = ({commit},value)=>{
   commit('UPDATE_STATE_MODAL_EDIT',value)
 }
 
+export const updateStateLoadingTable = ({commit},value)=>{
+    commit('UPDATE_STATE_LOADING_TABLE',value)
+  }
+
 export const getBrands = ({commit},payload)=>{
   brandAPI
   .get(payload)
   .then(response => {
-  
+    commit('UPDATE_STATE_LOADING_TABLE',false)
     commit('GET_BRANDS', { brands: response.data.data });
   })
   .catch(() => {

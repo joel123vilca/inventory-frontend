@@ -32,8 +32,8 @@
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="Área" :label-width="formLabelWidth" clearable filterable>
-              <el-select v-model="product.area" placeholder="Select">
+            <el-form-item label="Área" :label-width="formLabelWidth">
+              <el-select v-model="product.area" placeholder="Select" clearable filterable disabled>
                 <el-option v-for="area in areas" :key="area.id" :label="area.name" :value="area.id"></el-option>
               </el-select>
               <has-error :form="form" field="area_id" style="color:red"></has-error>

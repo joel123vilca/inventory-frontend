@@ -2,5 +2,6 @@ export default {
     modalOpenCreate:false,
     modalOpenEdit:false,
     brands:[],
-    brand:''
+    brand:'',
+    loadingTable:true
 }

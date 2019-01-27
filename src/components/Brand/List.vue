@@ -24,7 +24,8 @@
     </el-container>
 
     <el-table
-      v-loading="false"
+      v-loading="loadingTable"
+      element-loading-text="Cargando ..."
       :data="brands.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%"
     >
@@ -83,7 +84,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("brands", ["brands"]),
+    ...mapState("brands", ["brands", "loadingTable"]),
     modalCreate: {
       get() {
         return this.$store.getters.getModalCreate;
