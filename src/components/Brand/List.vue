@@ -15,6 +15,11 @@
             @click="modalCreate=!modalCreate"
           >Añadir</el-button>
         </el-col>
+        <el-col :span="3">
+          <download-excel :data="brands" name="brands.xls" title="Reporte de marcas">
+            <el-button type="success" round icon="el-icon-download">Excel</el-button>
+          </download-excel>
+        </el-col>
         <el-col :span="8">
           <div class="grid-content bg-purple">
             <el-input placeholder="Type something" prefix-icon="el-icon-search" v-model="search"></el-input>

@@ -10,6 +10,18 @@
         <el-col :span="14">
           <el-button type="warning" round icon="el-icon-plus" @click="cambiarRuta()">Añadir</el-button>
         </el-col>
+        <el-col :span="3">
+          <download-excel
+            :data="movements"
+            name="Reporte de movimientos"
+            :fields="json_fields"
+            title="Reporte de movimientos"
+          >
+            <el-button type="success" round icon="el-icon-download">Excel
+              <!-- <img src="@/assets/excel.png" style="width:10%"> -->
+            </el-button>
+          </download-excel>
+        </el-col>
         <el-col :span="8">
           <div class="grid-content bg-purple">
             <el-input placeholder="Type something" prefix-icon="el-icon-search" v-model="search"></el-input>
@@ -37,6 +49,18 @@
 import { mapActions, mapState } from "vuex";
 
 export default {
+  data() {
+    return {
+      json_fields: {
+        ID: "id",
+        Code: "product.code",
+        Nombre: "product.name",
+        "Area anterior": "area_anterior.name",
+        "Area actual": "area_actual.name",
+        Fecha: "created_at"
+      }
+    };
+  },
   methods: {
     ...mapActions("movements", ["getMovements"]),
     cambiarRuta() {

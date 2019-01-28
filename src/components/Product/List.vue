@@ -15,6 +15,18 @@
             @click="modalCreate=!modalCreate"
           >Añadir</el-button>
         </el-col>
+        <el-col :span="3">
+          <download-excel
+            :data="products"
+            name="products.xls"
+            :fields="json_fields"
+            title="Reporte de productos"
+          >
+            <el-button type="success" round icon="el-icon-download">Excel
+              <!-- <img src="@/assets/excel.png" style="width:10%"> -->
+            </el-button>
+          </download-excel>
+        </el-col>
         <el-col :span="8">
           <div class="grid-content bg-purple">
             <el-input placeholder="Type something" prefix-icon="el-icon-search" v-model="search"></el-input>
@@ -67,7 +79,17 @@ export default {
   },
   data() {
     return {
-      search: ""
+      search: "",
+      json_fields: {
+        Nombre: "name",
+        Código: "code",
+        Categoria: "category",
+        "Part number": "part_number",
+        "Precio (S/.)": "price",
+        Descripción: "description",
+        Area: "area.name",
+        Marca: "brand.name"
+      }
       // loading: "false"
     };
   },
