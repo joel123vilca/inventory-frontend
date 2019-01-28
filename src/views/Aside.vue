@@ -26,7 +26,7 @@
         <span>Areas</span>
       </el-menu-item>
 
-      <el-menu-item index="4">
+      <el-menu-item index="4" :route="{name:'movements'}">
         <i class="el-icon-menu"></i>
         <span>Movimientos</span>
       </el-menu-item>
