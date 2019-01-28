@@ -20,12 +20,19 @@
         <i class="el-icon-menu"></i>
         <span>Marcas</span>
       </el-menu-item>
-
       <el-menu-item index="3" :route="{name:'areas'}">
         <i class="el-icon-menu"></i>
         <span>Areas</span>
       </el-menu-item>
-
+      <el-submenu index="1">
+        <template slot="title">
+          <i class="el-icon-menu"></i>
+          <span>Menu de Areas</span>
+        </template>
+       
+          <router-link :to="'/areas/' + 1 + '/checks'" center> Area1 </router-link>
+      
+      </el-submenu>
       <el-menu-item index="4">
         <i class="el-icon-menu"></i>
         <span>Movimientos</span>
@@ -55,8 +62,11 @@ export default {};
   min-height: 90vh;
 }
 .image {
-  width: 43%;
+  width: 38%;
   display: block;
   margin: 0 auto;
+}
+.logo-container {
+  background-color: gray;
 }
 </style>
