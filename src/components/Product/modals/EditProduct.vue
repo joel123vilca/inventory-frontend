@@ -42,7 +42,7 @@
 
           <el-col :span="12">
             <el-form-item label="Marca" :label-width="formLabelWidth">
-              <el-select v-model="product.brand" placeholder="Select" clearable filterable>
+              <el-select v-model="product.brand.id" placeholder="Select" clearable filterable>
                 <el-option
                   v-for="brand in brands"
                   :key="brand.id"
@@ -116,7 +116,9 @@ export default {
       this.form.description = this.product.description;
       this.form.area_id = this.product.area.id;
       this.form.brand_id = this.product.brand.id;
-      this.updateProduct(this.form);
+      this.updateProduct(this.form).then(() => {
+        this.$swal.fire("", "El producto ha sido actualizado", "success");
+      });
     }
   }
 };

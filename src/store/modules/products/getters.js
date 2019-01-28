@@ -4,6 +4,6 @@ export const getModalCreate=(state)=>{
 export const getModalEdit=(state)=>{
   return state.modalOpenEdit
   }
-export const getBrand=(state)=>{
+export const getProduct=(state)=>{
   return state.product
 }

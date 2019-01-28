@@ -41,16 +41,10 @@ export default {
     enviar() {
       this.form.id = this.brand.id;
       this.form.name = this.brand.name;
-      this.updateBrand(this.form);
+      this.updateBrand(this.form).then(() => {
+        this.$swal.fire("", "La marca ha sido actualizado", "success");
+      });
     }
-    // changeState() {
-    //   //   this.$store.dispatch("updateStateModalEdit", !this.modalOpenEdit);
-    //   this.updateStateModalEdit(!this.modalOpenEdit);
-    // }
-    // updateBrand2() {
-    //   this.$store.dispatch("updateBrand", this.brand);
-    //   this.updateBrand(this.brand);
-    // }
   },
   computed: {
     ...mapState("brands", ["modalOpenEdit", "brand"])

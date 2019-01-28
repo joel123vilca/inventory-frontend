@@ -102,11 +102,6 @@ export default {
   },
   methods: {
     ...mapActions("products", ["createProduct", "updateStateModal"])
-
-    // saveBrand() {
-    //   this.createBrand(this.form);
-    //   this.$store.dispatch("createBrand", this.form);
-    // }
   },
   computed: {
     ...mapState("products", ["modalOpenCreate"]),

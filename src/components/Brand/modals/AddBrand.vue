@@ -16,7 +16,6 @@
                 autocomplete="off"
                 autofocus
               ></el-input>
-              {{form.name}}
               <has-error :form="form" field="name" style="color:red"></has-error>
             </el-form-item>
           </el-col>
