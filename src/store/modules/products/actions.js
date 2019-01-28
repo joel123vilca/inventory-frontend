@@ -23,13 +23,22 @@ export const getProducts = ({commit},payload)=>{
   })
 }
 export const createProduct = ({commit,dispatch},payload)=>{
-  //   console.log(payload.errors.set());
   productAPI
   .post(payload)
   .then(response => {
       commit('UPDATE_STATE_MODAL_CREATE',false)
       commit('UPDATE_STATE_LOADING_TABLE',true)
-    dispatch("getProducts");
+      dispatch("getProducts")
+      this.$swal
+      .fire({
+        title: "Estas seguro?",
+        text: "No seras capaz de revertir esto!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, eliminalo!"
+      })
   })
   .catch(() => {
       console.log('Error en la petición');

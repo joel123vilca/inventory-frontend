@@ -80,7 +80,29 @@ export default {
       this.modalEdit = !this.modalEdit;
     },
     handleDelete(index, row) {
-      this.deleteBrand(row.id);
+      this.$swal
+        .fire({
+          title: "Estas seguro?",
+          text: "No seras capaz de revertir esto!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Si, eliminalo!"
+        })
+        .then(result => {
+          if (result.value) {
+            this.deleteBrand(row.id).then(() => {
+              this.$swal.fire("", "La marca ha sido eliminada.", "success");
+            });
+          } else if (result.dismiss === this.$swal.DismissReason.cancel) {
+            this.$swal.fire(
+              "Cancelled",
+              "La operación ha sido cancelada",
+              "error"
+            );
+          }
+        });
     }
   },
   computed: {

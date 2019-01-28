@@ -9,7 +9,6 @@
         </el-col>
         <el-col :span="14">
           <el-button type="warning" round icon="el-icon-plus" @click="cambiarRuta()">Añadir</el-button>
-          <router-link to="/movements/test">Go to Foo</router-link>
         </el-col>
         <el-col :span="8">
           <div class="grid-content bg-purple">
@@ -29,21 +28,7 @@
       <el-table-column label="Nombre producto" prop="product.name"></el-table-column>
       <el-table-column label="Area anterior" prop="area_anterior.name"></el-table-column>
       <el-table-column label="Area actual" prop="area_actual.name"></el-table-column>
-      <!-- <el-table-column label="Acciones">
-        <template slot-scope="scope">
-          <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">
-            <i class="el-icon-view"></i>
-          </el-button>
-
-          <el-button size="small" type="warning" @click="handleEdit(scope.$index, scope.row)">
-            <i class="el-icon-edit"></i>
-          </el-button>
-
-          <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">
-            <i class="el-icon-delete"></i>
-          </el-button>
-        </template>
-      </el-table-column>-->
+      <el-table-column label="Fecha" prop="created_at"></el-table-column>
     </el-table>
   </div>
 </template>
