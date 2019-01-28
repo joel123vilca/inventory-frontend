@@ -1,113 +1,73 @@
 <template>
-  <el-dialog title="Media Manager" :visible.sync="modalOpenCreate" :close-on-click-modal="false">
-    <el-form :model="form" class="formulario-creación" :label-position="labelPosition">
-      <el-container>
-        <el-row :gutter="30">
-          <el-col :span="12">
-            <el-form-item label="Part number" :label-width="formLabelWidth">
-              <el-input v-model="form.name" autocomplete="off" autofocus="true"></el-input>
-            </el-form-item>
-          </el-col>
+  <div>
+    <el-container class="nombre-container">
+      <el-row type="flex" class="row-bg" justify="space-around" :gutter="20">
+        <el-col :span="15">
+          <div class="grid-content">
+            <h2 class="texto-principal">Area: {{ this.area.name}}/ checks</h2>
+          </div>
+        </el-col>
+        <el-col :span="14">
+          <el-button
+            type="warning"
+            round
+            icon="el-icon-plus"
+            @click="modalCreate=!modalCreate"
+          >Añadir</el-button>
+        </el-col>
+      </el-row>
+    </el-container>
 
-          <el-col :span="12">
-            <el-form-item label="Código" :label-width="formLabelWidth">
-              <el-input v-model="form.name" autocomplete="off"></el-input>
-            </el-form-item>
-          </el-col>
+    <el-table
+      v-loading="false"
+      :data="checks.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+      style="width: 100%"
+    >
+      <el-table-column label="Fecha - Revision" prop="data"></el-table-column>
+      <el-table-column label="Encargado" prop="user"></el-table-column>
+      <el-table-column label="Acciones">
+        <template slot-scope="scope">
+          <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">
+            <i class="el-icon-view"></i>
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
 
-          <el-col :span="12">
-            <el-form-item label="Nombre" :label-width="formLabelWidth">
-              <el-input v-model="form.name" autocomplete="off"></el-input>
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="Categoría" :label-width="formLabelWidth">
-              <el-input v-model="form.name" autocomplete="off" autofocus="true"></el-input>
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="Marca" :label-width="formLabelWidth">
-              <el-select v-model="form.region" placeholder="please select your zone">
-                <el-option label="Zone one" value="shanghai"></el-option>
-                <el-option label="Zone two" value="beijing"></el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="Área" :label-width="formLabelWidth">
-              <el-select v-model="form.region" placeholder="please select your zone">
-                <el-option label="Zone one" value="shanghai"></el-option>
-                <el-option label="Zone two" value="beijing"></el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="Imagen" :label-width="formLabelWidth">
-              <el-input v-model="form.name" autocomplete="off" autofocus="true"></el-input>
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="Descripción" :label-width="formLabelWidth">
-              <el-input v-model="form.name" autocomplete="off"></el-input>
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="Activity zone" :label-width="formLabelWidth">
-              <el-select v-model="form.region" placeholder="please select your zone">
-                <el-option label="Zone one" value="shanghai"></el-option>
-                <el-option label="Zone two" value="beijing"></el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-container>
-    </el-form>
-
-    <span slot="footer" class="dialog-footer">
-      <el-button @click="changeState">Cancel</el-button>
-      <el-button type="primary" @click="changeState" icon="el-icon-check">Guardar</el-button>
-    </span>
-  </el-dialog>
+    <AddModalProduct/>
+  </div>
 </template>
 
 <script>
+
+import { mapState } from 'vuex';
+import { mapActions } from 'vuex';
 export default {
+  components: {
+
+  },
   data() {
     return {
-      labelPosition: "left",
-      variable: 0,
       search: "",
-      loading: "false",
-      dialogTableVisible: false,
-      dialogFormVisible: false,
-      form: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: ""
-      },
-      formLabelWidth: "120px"
+      loading: "false"
     };
   },
-  methods: {
-    changeState() {
-      this.$store.dispatch("updateStateModal", !this.modalOpenCreate);
-    }
+ created(){
+    this.getChecks(this.$route.params.id);
+    this.getDetailArea(this.$route.params.id);
   },
-  computed: {
-    modalOpenCreate() {
-      return this.$store.state.modalOpenCreate;
-    }
+  beforeRouteUpdate(to,from,next) {
+    next()
+    this.getChecks(this.$route.params.id);
+    this.getDetailArea(this.$route.params.id);
+  },
+  methods:{
+    ...mapActions('checks',["getChecks"]),
+    ...mapActions('areas',["getDetailArea"])
+  },
+  computed:{
+    ...mapState("checks",["checks"]),
+    ...mapState("areas",["area"])
   }
 };
 </script>

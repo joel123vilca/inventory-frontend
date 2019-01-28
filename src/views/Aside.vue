@@ -30,7 +30,7 @@
           <span>Menu de Areas</span>
         </template>
           <div class="areas-list" v-for="area in areas" :key="area.id">
-            <router-link :to="`/areas/${area.id}/checks`" class="dropdown-item">{{area.name}}</router-link>
+            <router-link :to="`/areas/${area.id}`" class="dropdown-item">{{area.name}}</router-link>
           </div>
       </el-submenu>
       <el-menu-item index="4">

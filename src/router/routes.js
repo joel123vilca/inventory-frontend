@@ -26,7 +26,7 @@ export default[
       component: ListArea
     },
     {
-      path: '/areas/:id/checks',
+      path: '/areas/:id',
       name: 'checks',
       component: ListChecks
     },
