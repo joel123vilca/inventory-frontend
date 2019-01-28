@@ -28,6 +28,7 @@
       :data="areas.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%"
     >
+      
       <el-table-column type="index" width="50"></el-table-column>
       <el-table-column label="Name" prop="name"></el-table-column>
       <el-table-column label="Encargado" prop="person_in_charge"></el-table-column>

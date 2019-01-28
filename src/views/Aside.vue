@@ -20,13 +20,20 @@
         <i class="el-icon-menu"></i>
         <span>Marcas</span>
       </el-menu-item>
-
       <el-menu-item index="3" :route="{name:'areas'}">
         <i class="el-icon-menu"></i>
         <span>Areas</span>
       </el-menu-item>
-
-      <el-menu-item index="4" :route="{name:'movements'}">
+      <el-submenu index="1">
+        <template slot="title">
+          <i class="el-icon-menu"></i>
+          <span>Menu de Areas</span>
+        </template>
+          <div class="areas-list" v-for="area in areas" :key="area.id">
+            <router-link :to="`/areas/${area.id}`" class="dropdown-item">{{area.name}}</router-link>
+          </div>
+      </el-submenu>
+      <el-menu-item index="4">
         <i class="el-icon-menu"></i>
         <span>Movimientos</span>
       </el-menu-item>
@@ -45,7 +52,18 @@
 </template>
 
 <script>
-export default {};
+import { mapState, mapActions } from "vuex";
+export default {
+  created() {
+    this.getAreas();
+  },
+  methods: {
+    ...mapActions("areas", ["getAreas"])
+  },
+  computed: {
+    ...mapState("areas", ["areas"])
+  }
+};
 </script>
 
 <style scoped>
@@ -55,8 +73,11 @@ export default {};
   min-height: 90vh;
 }
 .image {
-  width: 43%;
+  width: 38%;
   display: block;
   margin: 0 auto;
+}
+.logo-container {
+  background-color: gray;
 }
 </style>

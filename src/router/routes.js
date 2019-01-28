@@ -1,8 +1,7 @@
 import ListBrand from '@/components/Brand/List.vue'
 import ListArea from '@/components/Area/List.vue';
 import ListProduct from '@/components/Product/List.vue';
-import ListMovement from '@/components/Movement/List.vue';
-import NewMovement from '@/components/Movement/NewMovement.vue';
+import ListChecks from '@/components/Checks/List.vue';
 import Main from '@/views/Main.vue'
 
 export default[
@@ -12,36 +11,28 @@ export default[
       component: Main
     },
     {
-        path: '/brands',
-        name: 'brands',
-        component: ListBrand
-      },
-      {
-        path: '/products',
-        name: 'products',
-        component: ListProduct
-      },
-      {
-        path: '/areas',
-        name: 'areas',
-        component: ListArea
-      },
-      {
-        path: '/movements',
-        name: 'movements',
-        component: ListMovement,
-      },
-      {
-        path: '/movements/new',
-        name: 'newMovement',
-        component: NewMovement,
-      },
+      path: '/brands',
+      name: 'brands',
+      component: ListBrand
+    },
+    {
+      path: '/products',
+      name: 'products',
+      component: ListProduct
+    },
+    {
+      path: '/areas',
+      name: 'areas',
+      component: ListArea
+    },
+    {
+      path: '/areas/:id',
+      name: 'checks',
+      component: ListChecks
+    },
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ '@/components/Brand/List.vue')
     }
   ]
