@@ -29,9 +29,9 @@
           <i class="el-icon-menu"></i>
           <span>Menu de Areas</span>
         </template>
-       
-          <router-link :to="'/areas/' + 1 + '/checks'" center> Area1 </router-link>
-      
+          <div class="areas-list" v-for="area in areas" :key="area.id">
+            <router-link :to="`/areas/${area.id}/checks`" class="dropdown-item">{{area.name}}</router-link>
+          </div>
       </el-submenu>
       <el-menu-item index="4">
         <i class="el-icon-menu"></i>
@@ -52,7 +52,18 @@
 </template>
 
 <script>
-export default {};
+import { mapState, mapActions } from "vuex";
+export default {
+  created() {
+    this.getAreas();
+  },
+  methods: {
+    ...mapActions("areas", ["getAreas"])
+  },
+  computed: {
+    ...mapState("areas", ["areas"])
+  }
+};
 </script>
 
 <style scoped>

@@ -52,9 +52,14 @@ export default {
       loading: "false"
     };
   },
-  created(){
+ created(){
     this.getChecks(this.$route.params.id);
-    this.getDetailArea(this.$route.params.id)
+    this.getDetailArea(this.$route.params.id);
+  },
+  beforeRouteUpdate(to,from,next){
+    next()
+    this.getChecks(this.$route.params.id);
+    this.getDetailArea(this.$route.params.id);
   },
   methods: {
     ...mapActions('checks',["getChecks"]),
