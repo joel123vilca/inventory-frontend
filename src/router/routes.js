@@ -4,6 +4,7 @@ import ListProduct from '@/components/Product/List.vue';
 import ListChecks from '@/components/Checks/List.vue';
 import ListMovement from '@/components/Movement/List.vue';
 import NewMovement from '@/components/Movement/NewMovement.vue';
+import AddCheck from '@/components/Checks/AddCheck.vue';
 
 import Main from '@/views/Main.vue'
 
@@ -38,11 +39,15 @@ export default[
       name: 'newMovement',
       component: NewMovement,
     },
-
     {
       path: '/areas/:id',
       name: 'checks',
       component: ListChecks
+    },
+    {
+      path:'check/:id',
+      name: 'AddCheck',
+      component: AddCheck
     },
     {
       path: '/about',
