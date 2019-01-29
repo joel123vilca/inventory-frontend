@@ -67,6 +67,20 @@
               <has-error :form="form" field="price" style="color:red"></has-error>
             </el-form-item>
           </el-col>
+
+          <el-col :span="12">
+            <el-form-item label="Color" :label-width="formLabelWidth">
+              <el-input v-model="product.color" autocomplete="off" autofocus="true"></el-input>
+              <has-error :form="form" field="color" style="color:red"></has-error>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12">
+            <el-form-item label="Color" :label-width="formLabelWidth">
+              <el-input v-model="product.transport_guide" autocomplete="off" autofocus="true"></el-input>
+              <has-error :form="form" field="transport_guide" style="color:red"></has-error>
+            </el-form-item>
+          </el-col>
         </el-row>
       </el-container>
     </el-form>
@@ -94,7 +108,9 @@ export default {
         price: "",
         description: "",
         area_id: "",
-        brand_id: ""
+        brand_id: "",
+        color: "",
+        transport_guide: ""
       }),
       formLabelWidth: "120px"
     };
@@ -116,6 +132,8 @@ export default {
       this.form.description = this.product.description;
       this.form.area_id = this.product.area.id;
       this.form.brand_id = this.product.brand.id;
+      this.form.color = this.product.color;
+      this.form.transport_guide = this.product.transport_guide;
       this.updateProduct(this.form).then(() => {
         this.$swal.fire("", "El producto ha sido actualizado", "success");
       });

@@ -3,6 +3,11 @@ import productAPI from '@/api/products';
 export const updateStateModal = ({commit},value)=>{
     commit('UPDATE_STATE_MODAL_CREATE',value)
 }
+
+export const updateStateModalShow = ({commit},value)=>{
+  commit('UPDATE_STATE_MODAL_SHOW',value)
+}
+
 export const updateStateModalEdit = ({commit},value)=>{
   commit('UPDATE_STATE_MODAL_EDIT',value)
 }
@@ -22,6 +27,18 @@ export const getProducts = ({commit},payload)=>{
       console.log('Error en la petición 2');
   })
 }
+
+export const getProductsByArea = ({commit},payload)=>{
+  productAPI
+  .getByArea(payload)
+  .then(response => {
+    // commit('UPDATE_STATE_LOADING_TABLE',false)
+    commit('GET_PRODUCTS', { products: response.data.data });
+  })
+  .catch(() => {
+      console.log('Error en la petición 2');
+  })
+}
 export const createProduct = ({commit,dispatch},payload)=>{
   productAPI
   .post(payload)
@@ -29,16 +46,7 @@ export const createProduct = ({commit,dispatch},payload)=>{
       commit('UPDATE_STATE_MODAL_CREATE',false)
       commit('UPDATE_STATE_LOADING_TABLE',true)
       dispatch("getProducts")
-      this.$swal
-      .fire({
-        title: "Estas seguro?",
-        text: "No seras capaz de revertir esto!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Si, eliminalo!"
-      })
+      
   })
   .catch(() => {
       console.log('Error en la petición');

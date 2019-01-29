@@ -2,6 +2,11 @@ export const UPDATE_STATE_MODAL_EDIT = (state,value)=>{
     state.modalOpenEdit=value
 }
 
+export const UPDATE_STATE_MODAL_SHOW = (state,value)=>{
+    state.modalOpenShow=value
+}
+
+
 export const UPDATE_STATE_MODAL_CREATE = (state,value)=>{
     state.modalOpenCreate=value
 }

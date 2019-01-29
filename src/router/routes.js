@@ -44,9 +44,4 @@ export default[
       name: 'checks',
       component: ListChecks
     },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ '@/components/Brand/List.vue')
-    }
   ]

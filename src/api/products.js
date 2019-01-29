@@ -13,6 +13,16 @@ export default {
             .catch(error => reject(error))
         })
     },
+    
+    getByArea(payload={}) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`${HOST}/areas/${payload}/products`)
+          .then(response => {
+              resolve(response)})
+          .catch(error => reject(error))
+      })
+  },
     post(payload = {}) {
         // const vForm = payload.vForm || {}
     console.log(payload);

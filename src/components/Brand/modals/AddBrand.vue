@@ -25,7 +25,7 @@
 
     <span slot="footer" class="dialog-footer">
       <el-button @click="updateStateModal(!modalOpenCreate)">Cancel</el-button>
-      <el-button type="primary" @click="createBrand(form)" icon="el-icon-check">Guardar</el-button>
+      <el-button type="primary" @click="saveBrand()" icon="el-icon-check">Guardar</el-button>
     </span>
   </el-dialog>
 </template>
@@ -49,14 +49,16 @@ export default {
     };
   },
   methods: {
-    ...mapActions("brands", ["createBrand", "updateStateModal"])
-    // changeState() {
-    //   this.updateStateModal(!this.modalOpenCreate);
-    // }
-    // saveBrand() {
-    //   this.createBrand(this.form);
-    //   this.$store.dispatch("createBrand", this.form);
-    // }
+    ...mapActions("brands", ["createBrand", "updateStateModal"]),
+    saveBrand() {
+      this.createBrand(this.form)
+        .then(() => {
+          this.$swal.fire("", "La marca ha sido actualizado", "success");
+        })
+        .catch(() => {
+          console.log("error en la petición");
+        });
+    }
   },
   computed: {
     ...mapState("brands", ["modalOpenCreate"])

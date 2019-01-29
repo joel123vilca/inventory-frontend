@@ -28,42 +28,9 @@ export default {
     Main
   },
   data() {
-    return {
-      labelPosition: "left",
-      variable: 0,
-      search: "",
-      loading: "false",
-      dialogTableVisible: false,
-      dialogFormVisible: false,
-      form: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: ""
-      },
-      formLabelWidth: "120px"
-    };
+    return {};
   },
-  methods: {
-    handleEdit(index, row) {
-      console.log(index, row);
-    },
-    handleDelete(index, row) {
-      console.log(index, row);
-    },
-    handleLoading() {
-      while (this.variable < 100) {
-        this.variable++;
-      }
-    },
-    handleLoadTable() {
-      this.loading = false;
-    }
-  },
+  methods: {},
   mounted() {
     this.handleLoading();
   }

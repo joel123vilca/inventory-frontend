@@ -43,11 +43,11 @@
       <el-table-column label="ID" prop="id"></el-table-column>
       <el-table-column label="Name" prop="name"></el-table-column>
       <el-table-column label="Categoria" prop="category"></el-table-column>
-      <el-table-column label="Marca" prop="brand.name"></el-table-column>
-      <el-table-column label="Area" prop="area.name"></el-table-column>
+      <el-table-column label="Marca" prop="brand.name" sortable></el-table-column>
+      <el-table-column label="Area" prop="area.name" sortable></el-table-column>
       <el-table-column label="Acciones">
         <template slot-scope="scope">
-          <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">
+          <el-button size="small" type="primary" @click="handleShow(scope.$index, scope.row)">
             <i class="el-icon-view"></i>
           </el-button>
 
@@ -64,18 +64,21 @@
 
     <AddProduct/>
     <EditProduct/>
+    <ShowProduct/>
   </div>
 </template>
 
 <script>
 import AddProduct from "@/components/Product/modals/AddProduct";
 import EditProduct from "@/components/Product/modals/EditProduct";
+import ShowProduct from "@/components/Product/modals/ShowProduct.vue";
 import { mapState, mapActions } from "vuex";
 
 export default {
   components: {
     AddProduct,
-    EditProduct
+    EditProduct,
+    ShowProduct
   },
   data() {
     return {
@@ -106,6 +109,10 @@ export default {
     ]),
     ...mapActions("brands", ["getBrands"]),
     ...mapActions("areas", ["getAreas"]),
+    handleShow(index, row) {
+      this.getDetailProduct(row.id);
+      this.modalShow = !this.modalShow;
+    },
     handleEdit(index, row) {
       this.getDetailProduct(row.id);
       this.modalEdit = !this.modalEdit;
@@ -145,6 +152,14 @@ export default {
       },
       set(value) {
         this.$store.dispatch("products/updateStateModal", value);
+      }
+    },
+    modalShow: {
+      get() {
+        return this.$store.getters.getModalShow;
+      },
+      set(value) {
+        this.$store.dispatch("products/updateStateModalShow", value);
       }
     },
     modalEdit: {
