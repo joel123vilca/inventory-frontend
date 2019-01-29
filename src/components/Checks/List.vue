@@ -14,7 +14,7 @@
             type="warning"
             round
             icon="el-icon-plus"
-            @click="modalCreate=!modalCreate"
+            @click="handleCreate()"
           >Crear  Check</el-button>
         </el-col>
       </el-row>
@@ -68,8 +68,40 @@ export default {
     this.getDetailArea(this.$route.params.id);
   },
   methods:{
-    ...mapActions('checks',["getChecks"]),
-    ...mapActions('areas',["getDetailArea"])
+    ...mapActions('checks',["getChecks","createCheck"]),
+    ...mapActions('areas',["getDetailArea"]),
+    handleCreate(){
+      this.$swal
+      .fire({
+        title: "Deseas Crear nuevo Check?",
+        text: "continua el siguiente paso",
+        type: 'question',
+        showCancelButton: true,
+        showCloseButton: true,
+        confirmButtonColor: "green",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, Continuar!"
+      })
+      .then(result => {
+        var id =  {
+          idarea: this.area.id,
+          user_id: 1,
+        };
+        if(result.value){
+          this.createCheck(id).then(() => {
+            this.$swal.fire("", "El check ha sido creado","success");
+            const Id = '8'
+            this.$router.push({ name: 'AddCheck', params: { Id } })
+          });
+        } else if (result.dismiss == this.$swal.DismissReason.cancel) {
+          this.$swal.fire(
+              "Cancelled",
+              "La operación ha sido cancelada",
+            );
+        }
+      })
+    }
+    
   },
   computed:{
     ...mapState("checks",["checks"]),

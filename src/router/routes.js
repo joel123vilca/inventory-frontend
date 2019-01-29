@@ -45,7 +45,7 @@ export default[
       component: ListChecks
     },
     {
-      path:'check/:id',
+      path:'/check/:id',
       name: 'AddCheck',
       component: AddCheck
     },

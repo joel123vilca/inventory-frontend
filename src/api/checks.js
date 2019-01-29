@@ -12,5 +12,24 @@ export default {
                     .then(response => resolve(response))
                     .catch(error => reject(error))
         })
+    },
+    post(payload = {}) {
+        console.log(payload.idarea);
+        return new Promise((resolve, reject) => {
+            axios({
+                url:`${HOST}/areas/${payload.idarea}/checks`,
+                method: 'post',
+                data: payload
+            })
+            .then(response => {
+                payload.reset(),
+                payload.clear(),
+                resolve(response)
+            })
+            .catch(error => {
+                payload.errors.set(payload.extraErrors(error.response))
+                reject(error)
+            })
+        })
     }
 }
