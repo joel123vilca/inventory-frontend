@@ -55,7 +55,10 @@ export default {
             method: 'put',
             data: payload
           })
-            .then(response => resolve(response))
+            .then(response => {
+              payload.reset(),
+                payload.clear(),
+                resolve(response)})
             .catch(error => {
               payload.errors.set(payload.extractErrors(error.response))
               reject(error)

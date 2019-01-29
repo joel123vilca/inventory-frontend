@@ -28,8 +28,10 @@ export default {
                 resolve(response)}
             )
             .catch(error => {
-                console.log(payload);
-              payload.errors.set(payload.extractErrors(error.response));
+                console.log(payload.errors);
+                console.log(error.response);
+            //   payload.errors.set(payload.extractErrors(error.response));
+              payload.errors.set(payload.extractErrors(error.response))
               reject(error)
             })
         })
@@ -55,7 +57,11 @@ export default {
             method: 'put',
             data: payload
           })
-            .then(response => resolve(response))
+            .then(response => {
+                payload.reset(),
+                payload.clear(),
+                resolve(response)
+            })
             .catch(error => {
                 // console.log(payload);
               payload.errors.set(payload.extractErrors(error.response));

@@ -22,7 +22,8 @@ export const getMovements = ({commit},payload)=>{
     .then(response => {
         commit('UPDATE_STATE_MODAL_TRANSFER',false)
         // commit('UPDATE_STATE_LOADING_TABLE',true)
-    //   dispatch("products/getProducts");
+      dispatch('products/getProducts', null, { root: true });
+    //    this.$swal("", "El producto ha sido actualizado", "success");
     })
     .catch(() => {
         console.log('Error en la petición');

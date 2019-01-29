@@ -29,11 +29,11 @@
           <i class="el-icon-menu"></i>
           <span>Menu de Areas</span>
         </template>
-          <div class="areas-list" v-for="area in areas" :key="area.id">
-            <router-link :to="`/areas/${area.id}`" class="dropdown-item">{{area.name}}</router-link>
-          </div>
+        <div class="areas-list" v-for="area in areas" :key="area.id">
+          <router-link :to="`/areas/${area.id}`" class="dropdown-item">{{area.name}}</router-link>
+        </div>
       </el-submenu>
-      <el-menu-item index="4">
+      <el-menu-item index="4" :route="{name:'movements'}">
         <i class="el-icon-menu"></i>
         <span>Movimientos</span>
       </el-menu-item>

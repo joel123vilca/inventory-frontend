@@ -34,7 +34,7 @@
 import { mapState, mapActions } from "vuex";
 
 import { Form, HasError, AlertError } from "vform";
-
+// import Vue from "vue";
 // Vue.component(HasError.name, HasError);
 // Vue.component(AlertError.name, AlertError);
 
@@ -42,10 +42,6 @@ export default {
   data() {
     return {
       labelPosition: "left",
-
-      //   form: {
-      //     name: ""
-      //   },
       form: new Form({
         name: ""
       }),

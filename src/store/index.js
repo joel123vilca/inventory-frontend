@@ -6,6 +6,7 @@ import areas from './modules/areas'
 import brands from './modules/brands'
 import products from './modules/products'
 import checks from './modules/checks'
+import movements from './modules/movements'
 
 export default new Vuex.Store({
   modules: {
