@@ -90,7 +90,7 @@ export default {
         if(result.value){
           this.createCheck(id).then(() => {
             this.$swal.fire("", "El check ha sido creado","success");
-            const Id = '8'
+            const Id = this.area.id
             this.$router.push({ name: 'AddCheck', params: { Id } })
           });
         } else if (result.dismiss == this.$swal.DismissReason.cancel) {

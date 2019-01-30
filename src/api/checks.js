@@ -22,8 +22,6 @@ export default {
                 data: payload
             })
             .then(response => {
-                payload.reset(),
-                payload.clear(),
                 resolve(response)
             })
             .catch(error => {
@@ -31,5 +29,15 @@ export default {
                 reject(error)
             })
         })
-    }
+    },
+    getProducts(payload = {}) {
+        const areaId = payload || {}
+        return new Promise((resolve, reject) => {
+          axios
+            .get(`${HOST}/areas/${areaId}/products`)
+            .then(response => {
+                resolve(response)})
+            .catch(error => reject(error))
+        })
+    },
 }

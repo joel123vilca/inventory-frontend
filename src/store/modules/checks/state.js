@@ -1,6 +1,7 @@
 export default {
-    modalOpenCreate:false,
     checks: [],
     check: '',
+    products: [],
+    product:'',
     loadingTable: true
 }

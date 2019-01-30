@@ -2,6 +2,6 @@ export const getChecks = (state)=>{
     return state.checks
   }
 
-export const getModalCreate = (state) => {
-  return state.modalOpenCreate
+export const getProducts = (state) => {
+  return state.products
 }

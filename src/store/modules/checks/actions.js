@@ -17,7 +17,6 @@ export const getChecks = ({commit}, payload) => {
 
 export const createCheck = ({commit,dispatch},payload = {}) => {
     console.log(payload);
-    console.log('aqui ');
     checksApi
     .post(payload)
     .then(response => {
@@ -27,3 +26,19 @@ export const createCheck = ({commit,dispatch},payload = {}) => {
         console.log('Error al crear check')
     })
 }
+
+export const getProducts = ({commit}, payload = {}) => {
+    
+    return new Promise((resolve, reject) => {
+        checksApi
+        .getProducts(payload)
+        .then(response => {
+            commit('GET_PRODUCTS', { products: response.data.data});
+            resolve(response)
+        })
+        .catch(error => {
+            reject(error)
+        })
+    })
+}
+
