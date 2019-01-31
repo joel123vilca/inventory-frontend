@@ -53,7 +53,7 @@ export const createProduct = ({commit,dispatch},payload)=>{
   })
   .catch((error) => {
       console.log('Error en la petición producto');
-      // reject(error)
+      reject(error)
   })
   })
 }
@@ -99,8 +99,8 @@ export const updateProduct = ({ commit,dispatch }, payload)=> {
         resolve(response)
       })
       .catch(error => {
-        // reject(error)
         console.log('errorxD');
+        reject(error)
       })
   })
 }

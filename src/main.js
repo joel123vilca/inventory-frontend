@@ -5,7 +5,7 @@ import store from '@/store/index'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
-import { Form, HasError, AlertError } from "vform";
+import { HasError, AlertError } from "vform";
 import VueSweetalert2 from 'vue-sweetalert2';
 import JsonExcel from 'vue-json-excel'
  

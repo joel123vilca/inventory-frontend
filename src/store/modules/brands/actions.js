@@ -30,11 +30,11 @@ export const createBrand = ({commit,dispatch},payload)=>{
     .then(response => {
         commit('UPDATE_STATE_MODAL_CREATE',false)
       dispatch("getBrands");
-
       resolve(response)
     })
     .catch((error) => {
         console.log('Error en la petición');
+        reject(error)
     })
   })
   
@@ -80,8 +80,8 @@ export const updateBrand = ({ commit,dispatch }, payload)=> {
         resolve(response)
       })
       .catch(error => {
-        // reject(error)
         console.log('errorxD');
+        reject(error)
       })
   })
 }

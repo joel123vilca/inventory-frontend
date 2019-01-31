@@ -8,8 +8,6 @@ import LoginPage from '@/views/LoginPage.vue'
 import HomePage from '@/views/HomePage.vue'
 import Perfil from '@/views/Perfil.vue'
 
-import Main from '@/views/Main.vue'
-
 export default[
     {
       path: '/',
@@ -59,5 +57,3 @@ export default[
     },
     { path: '*', redirect: '/' }
   ]
-
- 

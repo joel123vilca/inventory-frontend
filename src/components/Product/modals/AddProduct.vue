@@ -102,7 +102,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 
-import { Form, HasError, AlertError } from "vform";
+import { Form } from "vform";
 
 export default {
   data() {

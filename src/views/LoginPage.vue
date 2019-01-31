@@ -57,7 +57,7 @@ export default {
     // this.$store.dispatch("auth/logout");
   },
   methods: {
-    handleSubmit(e) {
+    handleSubmit() {
       this.submitted = true;
       const { username, password } = this;
       const { dispatch } = this.$store;

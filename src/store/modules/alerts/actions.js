@@ -1,7 +1,7 @@
 export const success = ({commit},message) => {
     commit('success', message);
 }
-export const error = ({commit,dispatch},message) => {
+export const error = ({commit},message) => {
     commit('error', message);
 }
 

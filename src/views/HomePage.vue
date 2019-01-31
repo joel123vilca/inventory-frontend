@@ -2,7 +2,6 @@
   <div>
     <p>You're logged in with Vue + Vuex & JWT!!</p>
     <h3>Users from secure api end point:</h3>
-
     <p>
       <router-link to="/login">Logout</router-link>
     </p>
@@ -10,7 +9,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 
 export default {
   computed: {

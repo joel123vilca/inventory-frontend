@@ -1,6 +1,6 @@
 import { userService } from '@/_services/user.service.js';
 
-export const getAll = ({commit},value)=>{
+export const getAll = ({commit})=>{
     commit('getAllRequest');
     userService.getAll()
         .then(

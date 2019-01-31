@@ -1,5 +1,4 @@
 import { userService } from '@/_services/user.service.js';
-import router from 'vue-router';
 
 export const login = ({commit,dispatch},payload)=>{
     console.log(payload);
@@ -8,7 +7,6 @@ export const login = ({commit,dispatch},payload)=>{
                 .then(
                     user => {
                         commit('loginSuccess', user);
-                        // this.$router.push({name:'HomePage'});
                     },
                     error => {
                         console.log(error.response.data.errors.username);
@@ -19,9 +17,7 @@ export const login = ({commit,dispatch},payload)=>{
 }
 
 
-export const logout = ({commit,dispatch})=>{
-
-    // userService.logout();
+export const logout = ({commit})=>{
    
     return new Promise((resolve, reject) => {
         userService

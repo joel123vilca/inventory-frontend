@@ -5,12 +5,15 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   methods: {
+    ...mapActions("auth", ["logout"]),
     cerrarSesión() {
-      this.$store.dispatch("auth/logout").then(() => {
-        this.$router.push("/login");
-      });
+      this.logout();
+      //   this.$store.dispatch("auth/logout").then(() => {
+      //     this.$router.push("/login");
+      //   });
     }
   }
 };

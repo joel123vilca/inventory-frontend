@@ -19,7 +19,7 @@ export const getMovements = ({commit},payload)=>{
     //   console.log(payload.errors.set());
     movementAPI
     .post(payload)
-    .then(response => {
+    .then(() => {
         commit('UPDATE_STATE_MODAL_TRANSFER',false)
         // commit('UPDATE_STATE_LOADING_TABLE',true)
       dispatch('products/getProducts', null, { root: true });

@@ -20,7 +20,7 @@ export const getAreas = ({commit},payload) => {
 export const createArea = ({commit,dispatch},payload) => {
   areaAPI
   .post(payload)
-  .then(response => {
+  .then(() => {
       commit('UPDATE_STATE_MODAL_CREATE',false)
     dispatch("getAreas");
   })

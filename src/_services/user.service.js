@@ -34,13 +34,10 @@ function login(user={}){
 //     localStorage.removeItem('user');
 // }
 
-function logout({commit}){
-    return new Promise((resolve, reject) => {
+function logout(){
       localStorage.removeItem('token')
       delete axios.defaults.headers.common['Authorization']
-      resolve()
-    })
-  }
+}
 
 function getAll() {
     const requestOptions = {

@@ -36,7 +36,7 @@ export default {
     ...mapState("alerts", ["message", "type"])
   },
   watch: {
-    $route(to, from) {
+    $route() {
       // clear alert on location change
       this.$store.dispatch("alerts/clear");
     }
