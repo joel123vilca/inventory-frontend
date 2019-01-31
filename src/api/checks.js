@@ -40,11 +40,11 @@ export default {
             .catch(error => reject(error))
         })
     },
-    postCheck(payload = {}) {
-        console.log(payload.id);
+    postDetail(payload = {}) {
+        console.log(payload.check_id);
         return new Promise((resolve, reject) => {
             axios({
-                url:`${HOST}/checks/${payload.id}/details`,
+                url:`${HOST}/checks/${payload.check_id}/details`,
                 method: 'post',
                 data: payload
             })

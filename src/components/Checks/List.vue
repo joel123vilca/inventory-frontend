@@ -90,8 +90,9 @@ export default {
         if(result.value){
           this.createCheck(id).then(() => {
             this.$swal.fire("", "El check ha sido creado","success");
+            const checkId = this.checkId
             const Id = this.area.id
-            this.$router.push({ name: 'AddCheck', params: { Id } })
+            this.$router.push({ name: 'AddCheck', params: { Id, checkId } })
           });
         } else if (result.dismiss == this.$swal.DismissReason.cancel) {
           this.$swal.fire(
@@ -104,7 +105,7 @@ export default {
     
   },
   computed:{
-    ...mapState("checks",["checks"]),
+    ...mapState("checks",["checks","checkId"]),
     ...mapState("areas",["area"])
   }
 };

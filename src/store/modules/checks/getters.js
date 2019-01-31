@@ -5,3 +5,4 @@ export const getChecks = (state)=>{
 export const getProducts = (state) => {
   return state.products
 }
+  

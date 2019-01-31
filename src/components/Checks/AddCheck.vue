@@ -32,23 +32,24 @@ import { mapActions, mapState } from 'vuex';
       state:false
   },
     methods:{
-        ...mapActions('checks',["getProducts",'getChecks', 'postCheck']),
+        ...mapActions('checks',["getProducts",'getChecks', 'saveCheck']),
         sendCheck(index){
-          var data = {
+          console.log(this.$route.paramans.checkId);
+          var detail = {
+            check_id: this.$route.paramans.checkId,
             state: this.state,
             observation: this.observation,
-            check_id: 3,
             product_id: this.products[index].id
-          }
-          console.log(this.products[index].id,this.observation,this.state);
-          this.saveCheck(data);
+          };
+          this.saveCheck(detail);
         }
     },
     computed:{
-        ...mapState("checks",["products",'checks'])
+        ...mapState("checks",["products",'checks','checkId'])
     },
      created(){
         this.getProducts(this.$route.params.id);
+        this.getChecks(this.$route.params.id);
     }
   };
 </script>

@@ -3,5 +3,6 @@ export default {
     check: '',
     products: [],
     product:'',
+    checkId:'',
     loadingTable: true
 }
