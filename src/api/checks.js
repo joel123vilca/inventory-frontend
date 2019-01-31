@@ -40,4 +40,21 @@ export default {
             .catch(error => reject(error))
         })
     },
+    postCheck(payload = {}) {
+        console.log(payload.id);
+        return new Promise((resolve, reject) => {
+            axios({
+                url:`${HOST}/checks/${payload.id}/details`,
+                method: 'post',
+                data: payload
+            })
+            .then(response => {
+                resolve(response)
+            })
+            .catch(error => {
+                payload.errors.set(payload.extraErrors(error.response))
+                reject(error)
+            })
+        })
+    },
 }

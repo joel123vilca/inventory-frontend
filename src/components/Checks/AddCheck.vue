@@ -1,43 +1,63 @@
 <template>
-<div>
-    <el-table 
-        v-loading="false"
-      :data="products.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
-      style="width: 100%"
-    >
-    <el-table-column
-      type="selection"
-      width="55">
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="Product"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="code"
-      label="code"
-      width="120">
-    </el-table-column>
-  </el-table>
-   
-    </div>
+
+  <div>
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Codigo</th>
+        <th>Producto</th>
+        <th>observacion</th>
+        <th>estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(product, index) in products" :key="product.id">
+        <td>{{product.code}}</td>
+        <td>{{product.name}}</td>
+        <td><input v-model="observation"  class="form-control" ></td>
+        <td><input type="checkbox"  v-model="state" class="check"></td>
+        <td><button @click="sendCheck(index)" class="btn btn-success">Save</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
+
   export default {
+    data:{ 
+      observation: "",
+      state:false
+  },
     methods:{
-        ...mapActions('checks',["getProducts",'getChecks'])
+        ...mapActions('checks',["getProducts",'getChecks', 'postCheck']),
+        sendCheck(index){
+          var data = {
+            state: this.state,
+            observation: this.observation,
+            check_id: 3,
+            product_id: this.products[index].id
+          }
+          console.log(this.products[index].id,this.observation,this.state);
+          this.saveCheck(data);
+        }
     },
     computed:{
         ...mapState("checks",["products",'checks'])
     },
      created(){
-    this.getProducts(this.$route.params.id);
-  }
+        this.getProducts(this.$route.params.id);
+    }
   };
 </script>
+
+<style>
+  .check{
+    margin-left: 50%;
+  }
+  @import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+</style>
 
 

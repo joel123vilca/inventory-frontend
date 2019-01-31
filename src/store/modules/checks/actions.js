@@ -42,3 +42,15 @@ export const getProducts = ({commit}, payload = {}) => {
     })
 }
 
+export const saveCheck = ({commit,dispatch},payload = {}) => { 
+    checksApi
+    .post(payload)
+    .then(response => {
+        resolve(response)
+    })
+    .catch(() => {
+        console.log('Error al crear check')
+    })
+}
+
+
