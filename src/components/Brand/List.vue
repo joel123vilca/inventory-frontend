@@ -22,7 +22,7 @@
         </el-col>
         <el-col :span="8">
           <div class="grid-content bg-purple">
-            <el-input placeholder="Type something" prefix-icon="el-icon-search" v-model="search"></el-input>
+            <el-input placeholder="Escribe algo" prefix-icon="el-icon-search" v-model="search"></el-input>
           </div>
         </el-col>
       </el-row>
@@ -39,10 +39,6 @@
 
       <el-table-column label="Acciones">
         <template slot-scope="scope">
-          <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">
-            <i class="el-icon-view"></i>
-          </el-button>
-
           <el-button size="small" type="warning" @click="handleEdit(scope.$index, scope.row)">
             <i class="el-icon-edit"></i>
           </el-button>

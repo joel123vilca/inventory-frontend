@@ -3,6 +3,8 @@
     title="Mostrar detalle de  producto"
     :visible.sync="modalOpenShow"
     :close-on-click-modal="false"
+    center
+    :show-close="false"
   >
     <el-form :model="form" class="formulario-creación" :label-position="labelPosition" disabled>
       <el-container>

@@ -4,6 +4,7 @@
     :visible.sync="modalOpenTransfer"
     :close-on-click-modal="false"
     center
+    :show-close="false"
   >
     <el-form :model="form" class="formulario-creación" :label-position="labelPosition">
       <el-container>

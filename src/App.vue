@@ -96,6 +96,10 @@ export default {
 }
 
 .formulario-creación {
-  margin-bottom: 100px;
+  margin-bottom: 20px;
+}
+
+.invalid-feedback {
+  display: block;
 }
 </style>

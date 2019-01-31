@@ -29,7 +29,7 @@
         </el-col>
         <el-col :span="8">
           <div class="grid-content bg-purple">
-            <el-input placeholder="Type something" prefix-icon="el-icon-search" v-model="search"></el-input>
+            <el-input placeholder="Escribe algo" prefix-icon="el-icon-search" v-model="search"></el-input>
           </div>
         </el-col>
       </el-row>
@@ -40,7 +40,8 @@
       :data="products.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()) || data.category.toLowerCase().includes(search.toLowerCase()) )"
       style="width: 100%"
     >
-      <el-table-column label="ID" prop="id"></el-table-column>
+      <!-- <el-table-column label="ID" prop="id"></el-table-column> -->
+      <el-table-column type="index" width="50"></el-table-column>
       <el-table-column label="Name" prop="name"></el-table-column>
       <el-table-column label="Categoria" prop="category"></el-table-column>
       <el-table-column label="Marca" prop="brand.name" sortable></el-table-column>

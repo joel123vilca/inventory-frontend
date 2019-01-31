@@ -3,7 +3,10 @@
     title="Añadir producto"
     :visible.sync="modalOpenCreate"
     :close-on-click-modal="false"
-    width="80%"
+    width="70%"
+    center
+    top="5vh"
+    :show-close="false"
   >
     <el-form :model="form" class="formulario-creación" :label-position="labelPosition">
       <el-container>
@@ -89,10 +92,9 @@
         </el-row>
       </el-container>
     </el-form>
-
     <span slot="footer" class="dialog-footer">
-      <el-button @click="updateStateModal(!modalOpenCreate)">Cancel</el-button>
-      <el-button type="primary" @click="createProduct(form)" icon="el-icon-check">Guardar</el-button>
+      <el-button @click="closeModal()">Cancel</el-button>
+      <el-button type="primary" @click="saveProduct()" icon="el-icon-check">Guardar</el-button>
     </span>
   </el-dialog>
 </template>
@@ -122,7 +124,18 @@ export default {
     };
   },
   methods: {
-    ...mapActions("products", ["createProduct", "updateStateModal"])
+    ...mapActions("products", ["createProduct", "updateStateModal"]),
+    closeModal() {
+      this.updateStateModal(!this.modalOpenCreate).then(() => {
+        this.form.clear();
+        this.form.reset();
+      });
+    },
+    saveProduct() {
+      this.createProduct(this.form).then(() => {
+        this.$swal.fire("", "El producto ha sido creado", "success");
+      });
+    }
   },
   computed: {
     ...mapState("products", ["modalOpenCreate"]),
@@ -138,5 +151,8 @@ export default {
 }
 .error-color {
   border-color: red;
+}
+.el-select {
+  width: 100%;
 }
 </style>

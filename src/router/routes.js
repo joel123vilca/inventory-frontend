@@ -44,4 +44,5 @@ export default[
       name: 'checks',
       component: ListChecks
     },
+    { path: '*', redirect: '/' }
   ]

@@ -1,5 +1,10 @@
 <template>
-  <el-dialog title="Editar producto" :visible.sync="modalOpenEdit" :close-on-click-modal="false">
+  <el-dialog
+    title="Editar producto"
+    :visible.sync="modalOpenEdit"
+    :close-on-click-modal="false"
+    :show-close="false"
+  >
     <el-form :model="form" class="formulario-creación" :label-position="labelPosition">
       <el-container>
         <el-row :gutter="30">
@@ -86,7 +91,7 @@
     </el-form>
 
     <span slot="footer" class="dialog-footer">
-      <el-button @click="updateStateModalEdit(!modalOpenEdit)">Cancel</el-button>
+      <el-button @click="closeModal()">Cancel</el-button>
       <el-button type="primary" @click="enviar()" icon="el-icon-check">Guardar</el-button>
     </span>
   </el-dialog>
@@ -122,6 +127,12 @@ export default {
   },
   methods: {
     ...mapActions("products", ["updateStateModalEdit", "updateProduct"]),
+    closeModal() {
+      this.updateStateModalEdit(!this.modalOpenEdit).then(() => {
+        this.form.clear();
+        this.form.reset();
+      });
+    },
     enviar() {
       this.form.id = this.product.id;
       this.form.name = this.product.name;

@@ -1,5 +1,11 @@
 <template>
-  <el-dialog title="Nueva marca 2" :visible="modalOpenEdit" :close-on-click-modal="false" center>
+  <el-dialog
+    title="Editar marca"
+    :visible="modalOpenEdit"
+    :close-on-click-modal="false"
+    center
+    :show-close="false"
+  >
     <el-form :model="form" class="formulario-creación" :label-position="labelPosition">
       <el-container>
         <el-row>
@@ -14,7 +20,7 @@
     </el-form>
 
     <span slot="footer" class="dialog-footer">
-      <el-button @click="updateStateModalEdit(!modalOpenEdit)">Cancel</el-button>
+      <el-button @click="modalClose()">Cancel</el-button>
       <el-button type="primary" @click="enviar()" icon="el-icon-check">Guardar</el-button>
     </span>
   </el-dialog>
@@ -27,9 +33,6 @@ export default {
   data() {
     return {
       labelPosition: "left",
-      //   form: {
-      //     name: ""
-      //   },
       form: new Form({
         name: ""
       }),
@@ -38,11 +41,17 @@ export default {
   },
   methods: {
     ...mapActions("brands", ["updateBrand", "updateStateModalEdit"]),
+    modalClose() {
+      this.updateStateModalEdit(!this.modalOpenEdit).then(() => {
+        this.form.reset();
+        this.form.clear();
+      });
+    },
     enviar() {
       this.form.id = this.brand.id;
       this.form.name = this.brand.name;
       this.updateBrand(this.form).then(() => {
-        this.$swal.fire("", "La marca ha sido actualizado", "success");
+        this.$swal.fire("", "La marca ha sido actualizada", "success");
       });
     }
   },
@@ -52,5 +61,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.el-row {
+  width: 100%;
+}
 </style>

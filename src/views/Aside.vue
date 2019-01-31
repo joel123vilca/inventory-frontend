@@ -4,13 +4,7 @@
       <img src="http://idw.com.pe/image/logo.png" class="image">
     </div>
 
-    <el-menu
-      default-active="2"
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
-      :router="true"
-    >
+    <el-menu default-active="1" class="el-menu-vertical-demo" :router="true">
       <el-menu-item index="1" active :route="{name:'products'}">
         <i class="el-icon-menu"></i>
         <span>Productos</span>
@@ -24,14 +18,14 @@
         <i class="el-icon-menu"></i>
         <span>Areas</span>
       </el-menu-item>
-      <el-submenu index="1">
+      <el-submenu index="4">
         <template slot="title">
           <i class="el-icon-menu"></i>
           <span>Menu de Areas</span>
         </template>
         <div class="areas-list" v-for="area in areas" :key="area.id">
           <el-menu-item
-            index="1-1"
+            index="`{area.id}`"
             :route="{ name: 'checks', params: { id: `${area.id}` } }"
           >{{area.name}}</el-menu-item>
         </div>

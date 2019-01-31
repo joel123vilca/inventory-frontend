@@ -24,15 +24,20 @@ export const getBrands = ({commit},payload)=>{
 }
 export const createBrand = ({commit,dispatch},payload)=>{
   //   console.log(payload.errors.set());
-  brandAPI
-  .post(payload)
-  .then(response => {
-      commit('UPDATE_STATE_MODAL_CREATE',false)
-    dispatch("getBrands");
+  return new Promise((resolve, reject) => {
+    brandAPI
+    .post(payload)
+    .then(response => {
+        commit('UPDATE_STATE_MODAL_CREATE',false)
+      dispatch("getBrands");
+
+      resolve(response)
+    })
+    .catch((error) => {
+        console.log('Error en la petición');
+    })
   })
-  .catch(() => {
-      console.log('Error en la petición');
-  })
+  
 }
 
 export const getDetailBrand = ({ commit }, payload) =>{

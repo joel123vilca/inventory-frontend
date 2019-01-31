@@ -40,16 +40,21 @@ export const getProductsByArea = ({commit},payload)=>{
   })
 }
 export const createProduct = ({commit,dispatch},payload)=>{
-  productAPI
+
+  return new Promise((resolve, reject) => {
+    productAPI
   .post(payload)
   .then(response => {
       commit('UPDATE_STATE_MODAL_CREATE',false)
-      commit('UPDATE_STATE_LOADING_TABLE',true)
+      // commit('UPDATE_STATE_LOADING_TABLE',true)
       dispatch("getProducts")
+      resolve(response)
       
   })
-  .catch(() => {
-      console.log('Error en la petición');
+  .catch((error) => {
+      console.log('Error en la petición producto');
+      // reject(error)
+  })
   })
 }
 
@@ -75,6 +80,7 @@ export const deleteProduct = ({ commit,dispatch }, payload) => {
       .then(response => {
       commit('UPDATE_STATE_MODAL_CREATE',false)
       dispatch("getProducts");
+     
         resolve(response)
       })
       .catch(error => {
