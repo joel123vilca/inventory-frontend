@@ -7,6 +7,9 @@ import brands from './modules/brands'
 import products from './modules/products'
 import checks from './modules/checks'
 import movements from './modules/movements'
+import alerts from './modules/alerts'
+import auth from './modules/auth'
+import users from './modules/users'
 
 export default new Vuex.Store({
   modules: {
@@ -14,6 +17,9 @@ export default new Vuex.Store({
     checks,
     brands,
     products,
-    movements
+    movements,
+    alerts,
+    auth,
+    users
   }
 })

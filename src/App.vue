@@ -7,6 +7,7 @@
           <Header/>
         </el-header>
         <el-main class="contenedor-principal">
+          <div v-if="message" :class="`alert ${type}`">{{message}}</div>
           <router-view>
             <Main/>
           </router-view>
@@ -21,6 +22,7 @@
 import Aside from "@/views/Aside";
 import Header from "@/views/Header";
 import Main from "@/views/Main";
+import { mapState } from "vuex";
 export default {
   components: {
     Aside,
@@ -30,10 +32,19 @@ export default {
   data() {
     return {};
   },
-  methods: {},
-  mounted() {
-    this.handleLoading();
-  }
+  computed: {
+    ...mapState("alerts", ["message", "type"])
+  },
+  watch: {
+    $route(to, from) {
+      // clear alert on location change
+      this.$store.dispatch("alerts/clear");
+    }
+  },
+  methods: {}
+  // mounted() {
+  //   this.handleLoading();
+  // }
 };
 </script>
 

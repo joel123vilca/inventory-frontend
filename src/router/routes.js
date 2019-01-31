@@ -4,6 +4,9 @@ import ListProduct from '@/components/Product/List.vue';
 import ListChecks from '@/components/Checks/List.vue';
 import ListMovement from '@/components/Movement/List.vue';
 import NewMovement from '@/components/Movement/NewMovement.vue';
+import LoginPage from '@/views/LoginPage.vue'
+import HomePage from '@/views/HomePage.vue'
+import Perfil from '@/views/Perfil.vue'
 
 import Main from '@/views/Main.vue'
 
@@ -11,7 +14,17 @@ export default[
     {
       path: '/',
       name: 'home',
-      component: Main
+      component: HomePage
+    },
+    {
+      path: '/me',
+      name: 'perfil',
+      component: Perfil
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginPage
     },
     {
       path: '/brands',
@@ -46,3 +59,5 @@ export default[
     },
     { path: '*', redirect: '/' }
   ]
+
+ 

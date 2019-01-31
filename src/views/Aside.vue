@@ -35,7 +35,7 @@
         <span>Movimientos</span>
       </el-menu-item>
 
-      <el-menu-item index="5">
+      <el-menu-item index="5" :route="{name:'perfil'}">
         <i class="el-icon-setting"></i>
         <span>Perfil</span>
       </el-menu-item>
