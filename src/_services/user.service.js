@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { authHeader } from '../_helpers';
-const HOST = 'http://localhost:8000/api'
+// const HOST = 'http://localhost:8000/api'
+import {HOST} from '@/api/host.js'
 
 
 export const userService = {
@@ -35,8 +36,12 @@ function login(user={}){
 // }
 
 function logout(){
-      localStorage.removeItem('token')
-      delete axios.defaults.headers.common['Authorization']
+    return new Promise((resolve) => {
+        console.log('desde logout');
+        localStorage.removeItem('token')
+        delete axios.defaults.headers.common['Authorization']
+        resolve();
+    })
 }
 
 function getAll() {

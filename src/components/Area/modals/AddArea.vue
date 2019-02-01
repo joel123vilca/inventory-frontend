@@ -4,7 +4,7 @@
     :visible.sync="modalOpenCreate"
     :close-on-click-modal="false"
     center
-    @close="updateStateModal(!modalOpenCreate)"
+    :show-close="false"
   >
     <el-form :model="form" class="formulario-creación" :label-position="labelPosition">
       <el-container>

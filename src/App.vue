@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <el-container>
-      <Aside/>
+      <Aside v-if="status.loggedIn"/>
       <el-container>
         <el-header>
-          <Header/>
+          <Header v-if="status.loggedIn"/>
         </el-header>
         <el-main class="contenedor-principal">
           <div v-if="message" :class="`alert ${type}`">{{message}}</div>
@@ -22,6 +22,7 @@
 import Aside from "@/views/Aside";
 import Header from "@/views/Header";
 import Main from "@/views/Main";
+import axios from 'axios';
 import { mapState } from "vuex";
 export default {
   components: {
@@ -30,10 +31,34 @@ export default {
     Main
   },
   data() {
-    return {};
+    return {
+      aldo: false
+    };
+  },
+  created() {
+    // var token = localStorage.getItem("token");
+    // console.log(token);
+    // if (token) {
+    //   this.aldo = true;
+    //   // axios.defaults.headers.common["Authorization"] = `Bearer${token}`;
+    // } else {
+    //   this.aldo = false;
+    // }
+
+    axios.interceptors.response.use(undefined, function (err) {
+    return new Promise(function (resolve, reject) {
+      if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+      // if you ever get an unauthorized, logout the user
+        this.$store.dispatch("auth/logout")
+      // you can also redirect to /login if needed !
+      }
+      throw err;
+    });
+});
   },
   computed: {
-    ...mapState("alerts", ["message", "type"])
+    ...mapState("alerts", ["message", "type"]),
+    ...mapState("auth", ["status"])
   },
   watch: {
     $route() {

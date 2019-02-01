@@ -1,5 +1,11 @@
 <template>
-  <el-dialog title="Nueva Area" :visible="modalOpenEdit" :close-on-click-modal="false" center>
+  <el-dialog
+    title="Editar área"
+    :visible="modalOpenEdit"
+    :close-on-click-modal="false"
+    center
+    :show-close="false"
+  >
     <el-form :model="form" class="formulario-creación" :label-position="labelPosition">
       <el-container>
         <el-row>

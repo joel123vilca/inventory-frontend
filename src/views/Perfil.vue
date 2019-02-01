@@ -10,7 +10,9 @@ export default {
   methods: {
     ...mapActions("auth", ["logout"]),
     cerrarSesión() {
-      this.logout();
+      this.logout().then(() => {
+        this.$router.push("/login");
+      });
       //   this.$store.dispatch("auth/logout").then(() => {
       //     this.$router.push("/login");
       //   });

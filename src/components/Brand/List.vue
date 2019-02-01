@@ -58,6 +58,7 @@
 <script>
 import AddBrand from "@/components/Brand/modals/AddBrand";
 import EditBrand from "@/components/Brand/modals/EditBrand";
+// import axios from "axios";
 import { mapState, mapActions } from "vuex";
 
 export default {

@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div class="alert alert-info">Username: test
-      <br>Password: test
+    <div class="alert alert-info">
+      <!-- Username: test
+      <br>Password: test-->
     </div>
     <h2>Login</h2>
     <form @submit.prevent="handleSubmit">
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -50,11 +52,19 @@ export default {
   computed: {
     loggingIn() {
       return this.$store.state.auth.status.loggingIn;
-    }
+    },
+    ...mapState("auth", ["status"])
   },
   created() {
     // reset login status
-    // this.$store.dispatch("auth/logout");
+    console.log(this.status.loggedIn);
+    if (this.status.loggedIn) {
+      this.$router.push("/");
+      console.log("pusheadno a inicio");
+    } else {
+      console.log("pusheadno a inicio 1234");
+      this.$store.dispatch("auth/logout");
+    }
   },
   methods: {
     handleSubmit() {
@@ -67,7 +77,7 @@ export default {
       };
       if (username && password) {
         dispatch("auth/login", payload).then(() => {
-          //   this.$router.push("/");
+          this.$router.push("/");
           console.log("logeado");
         });
       }

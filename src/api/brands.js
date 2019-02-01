@@ -1,12 +1,27 @@
 import axios from 'axios'
 
-const HOST = 'http://localhost:8000/api'
+// const HOST = 'http://localhost:8000/api'
+import {HOST} from '@/api/host.js'
+
+// const instance = axios.create({
+//     baseURL: 'https://some-domain.com/api/',
+//     timeout: 1000,
+//     headers: {'Authorization': ''}
+//   });
+
+  var token = localStorage.getItem("token");
+  console.log(token);
+  if (token) {
+    console.log("aver aver que paso aqui");
+    axios.defaults.headers.common["Authorization"] = `Bearer${token}`;
+  }
 
 export default {
+
  
     get() {
         return new Promise((resolve, reject) => {
-          axios
+        axios
             .get(`${HOST}/brands`)
             .then(response => {
                 resolve(response)})

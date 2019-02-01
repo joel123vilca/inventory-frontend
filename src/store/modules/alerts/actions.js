@@ -5,7 +5,6 @@ export const error = ({commit},message) => {
     commit('error', message);
 }
 
-export const getDetailArea = ({ commit }, message) => {
+export const clear = ({ commit }, message) => {
     commit('success', message);
 }
-

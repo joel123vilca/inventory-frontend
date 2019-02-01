@@ -1,5 +1,6 @@
 import axios from 'axios'
-const HOST = 'http://localhost:8000/api'
+
+import {HOST} from '@/api/host.js'
 
 export default {
  
