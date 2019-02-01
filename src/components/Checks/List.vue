@@ -29,7 +29,7 @@
       <el-table-column label="Encargado" prop="user"></el-table-column>
       <el-table-column label="Acciones">
         <template slot-scope="scope">
-          <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">
+          <el-button size="small" type="primary" @click="handleDetail(scope.$index, scope.row)">
             <i class="el-icon-view"></i>
           </el-button>
         </template>
@@ -70,6 +70,11 @@ export default {
   methods:{
     ...mapActions('checks',["getChecks","createCheck"]),
     ...mapActions('areas',["getDetailArea"]),
+    handleDetail(index, row) {
+      console.log(row.id);
+      var id = row.id
+      this.$router.push({ name: 'details', params: { id } })
+    },
     handleCreate(){
       this.$swal
       .fire({
@@ -92,7 +97,7 @@ export default {
             this.$swal.fire("", "El check ha sido creado","success");
             const checkId = this.checkId
             const Id = this.area.id
-            this.$router.push({ name: 'AddCheck', params: { Id, checkId } })
+            this.$router.push({ name: 'AddCheck', params: { Id } })
           });
         } else if (result.dismiss == this.$swal.DismissReason.cancel) {
           this.$swal.fire(
@@ -111,5 +116,3 @@ export default {
 };
 </script>
 
-<style>
-</style>

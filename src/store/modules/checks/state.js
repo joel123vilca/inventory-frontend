@@ -4,5 +4,6 @@ export default {
     products: [],
     product:'',
     checkId:'',
+    details: [],
     loadingTable: true
 }

@@ -5,6 +5,7 @@ import ListChecks from '@/components/Checks/List.vue';
 import ListMovement from '@/components/Movement/List.vue';
 import NewMovement from '@/components/Movement/NewMovement.vue';
 import AddCheck from '@/components/Checks/AddCheck.vue';
+import DetailCheck from '@/components/Checks/DetailCheck.vue';
 
 import Main from '@/views/Main.vue'
 
@@ -48,6 +49,11 @@ export default[
       path:'/check/:id',
       name: 'AddCheck',
       component: AddCheck
+    },
+    {
+      path:'/detail/:id',
+      name: 'details',
+      component: DetailCheck
     },
     {
       path: '/about',

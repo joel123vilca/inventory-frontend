@@ -52,9 +52,23 @@ export const saveCheck = ({commit,dispatch},payload = {}) => {
             resolve(response);
         })
         .catch((error) => {
+            reject(error)
             console.log('error')
         })
     })
 }
 
+export const getDetails = ({commit,dispatch}, payload = {}) => {
+    return new Promise((resolve,reject) => {
+        checksApi
+        .getDetails(payload)
+        .then(response => {
+            commit('GET_DETAILS', { details: response.data});
+            resolve(response)
+        })
+        .catch((error) => {
+            reject(error)
+        })
+    })
+}
 

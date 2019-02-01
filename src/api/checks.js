@@ -57,4 +57,14 @@ export default {
             })
         })
     },
+    getDetails(payload = {}) {
+        const checkId = payload || {}
+        return new Promise((resolve, reject) => {
+          axios
+            .get(`${HOST}/checks/${checkId}`)
+            .then(response => {
+                resolve(response)})
+            .catch(error => reject(error))
+        })
+    },
 }
