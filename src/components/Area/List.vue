@@ -77,9 +77,6 @@ export default {
       this.getDetailArea(row.id);
       this.modalEdit = !this.modalEdit;
     },
-    // handleDelete(index, row) {
-    //   this.deleteArea(row.id);
-    // },
     handleDelete(index, row) {
       this.$swal
         .fire({

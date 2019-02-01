@@ -22,7 +22,7 @@
 import Aside from "@/views/Aside";
 import Header from "@/views/Header";
 import Main from "@/views/Main";
-import axios from 'axios';
+import axios from "axios";
 import { mapState } from "vuex";
 export default {
   components: {
@@ -36,25 +36,17 @@ export default {
     };
   },
   created() {
-    // var token = localStorage.getItem("token");
-    // console.log(token);
-    // if (token) {
-    //   this.aldo = true;
-    //   // axios.defaults.headers.common["Authorization"] = `Bearer${token}`;
-    // } else {
-    //   this.aldo = false;
-    // }
-
-    axios.interceptors.response.use(undefined, function (err) {
-    return new Promise(function (resolve, reject) {
-      if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
-      // if you ever get an unauthorized, logout the user
-        this.$store.dispatch("auth/logout")
-      // you can also redirect to /login if needed !
-      }
-      throw err;
+    axios.interceptors.response.use(undefined, function(err) {
+      return new Promise(function() {
+        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+          // if you ever get an unauthorized, logout the user
+          this.$store.dispatch("auth/logout");
+          this.$router.push("/login");
+          // you can also redirect to /login if needed !
+        }
+        throw err;
+      });
     });
-});
   },
   computed: {
     ...mapState("alerts", ["message", "type"]),
