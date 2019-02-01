@@ -1,15 +1,21 @@
 <template>
   <div id="app">
     <el-container>
-      <Aside v-if="status.loggedIn"/>
+      <Aside v-if="status.loggedIn" />
       <el-container>
         <el-header>
-          <Header v-if="status.loggedIn"/>
+          <Header v-if="status.loggedIn" />
         </el-header>
         <el-main class="contenedor-principal">
-          <div v-if="message" :class="`alert ${type}`">{{message}}</div>
+          <div
+            v-if="message"
+            :class="`alert ${type}`"
+          >
+            {{ message }}
+          </div>
+
           <router-view>
-            <Main/>
+            <Main />
           </router-view>
         </el-main>
       </el-container>
@@ -17,52 +23,51 @@
   </div>
 </template>
 
-
 <script>
-import Aside from "@/views/Aside";
-import Header from "@/views/Header";
-import Main from "@/views/Main";
-import axios from "axios";
-import { mapState } from "vuex";
+import Aside from '@/views/Aside'
+import Header from '@/views/Header'
+import Main from '@/views/Main'
+import axios from 'axios'
+import { mapState } from 'vuex'
 export default {
   components: {
     Aside,
     Header,
     Main
   },
-  data() {
+  data () {
     return {
       aldo: false
-    };
+    }
   },
-  created() {
-    axios.interceptors.response.use(undefined, function(err) {
-      return new Promise(function() {
+  created () {
+    axios.interceptors.response.use(undefined, function (err) {
+      return new Promise(function () {
         if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
           // if you ever get an unauthorized, logout the user
-          this.$store.dispatch("auth/logout");
-          this.$router.push("/login");
+          this.$store.dispatch('auth/logout')
+          this.$router.push('/login')
           // you can also redirect to /login if needed !
         }
-        throw err;
-      });
-    });
+        throw err
+      })
+    })
   },
   computed: {
-    ...mapState("alerts", ["message", "type"]),
-    ...mapState("auth", ["status"])
+    ...mapState('alerts', ['message', 'type']),
+    ...mapState('auth', ['status'])
   },
   watch: {
-    $route() {
+    $route () {
       // clear alert on location change
-      this.$store.dispatch("alerts/clear");
+      this.$store.dispatch('alerts/clear')
     }
   },
   methods: {}
   // mounted() {
   //   this.handleLoading();
   // }
-};
+}
 </script>
 
 <style>

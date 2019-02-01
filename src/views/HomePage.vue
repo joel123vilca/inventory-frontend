@@ -12,8 +12,8 @@ export default {
   computed: {
     // ...mapState("auth", ["user"])
   },
-  created() {}
-};
+  created () {}
+}
 </script>
 
 <style>

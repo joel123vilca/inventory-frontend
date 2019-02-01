@@ -8,141 +8,271 @@
     top="5vh"
     :show-close="false"
   >
-    <el-form :model="form" class="formulario-creación" :label-position="labelPosition">
+    <el-form
+      :model="form"
+      class="formulario-creación"
+      :label-position="labelPosition"
+    >
       <el-container>
         <el-row :gutter="30">
           <el-col :span="12">
-            <el-form-item label="Part number" :label-width="formLabelWidth">
-              <el-input v-model="form.part_number" autocomplete="off" autofocus="true"></el-input>
-              <has-error :form="form" field="part_number" style="color:red"></has-error>
+            <el-form-item
+              label="Part number"
+              :label-width="formLabelWidth"
+            >
+              <el-input
+                v-model="form.part_number"
+                autocomplete="off"
+                autofocus="true"
+              />
+              <has-error
+                :form="form"
+                field="part_number"
+                style="color:red"
+              />
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="Código" :label-width="formLabelWidth">
-              <el-input v-model="form.code" autocomplete="off" ref="text"></el-input>
-              <has-error :form="form" field="code" style="color:red"></has-error>
+            <el-form-item
+              label="Código"
+              :label-width="formLabelWidth"
+            >
+              <el-input
+                ref="text"
+                v-model="form.code"
+                autocomplete="off"
+              />
+              <has-error
+                :form="form"
+                field="code"
+                style="color:red"
+              />
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="Nombre" :label-width="formLabelWidth">
-              <el-input v-model="form.name" autocomplete="off"></el-input>
-              <has-error :form="form" field="name" style="color:red"></has-error>
+            <el-form-item
+              label="Nombre"
+              :label-width="formLabelWidth"
+            >
+              <el-input
+                v-model="form.name"
+                autocomplete="off"
+              />
+              <has-error
+                :form="form"
+                field="name"
+                style="color:red"
+              />
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="Categoría" :label-width="formLabelWidth">
-              <el-input v-model="form.category" autocomplete="off" autofocus="true"></el-input>
-              <has-error :form="form" field="category" style="color:red"></has-error>
+            <el-form-item
+              label="Categoría"
+              :label-width="formLabelWidth"
+            >
+              <el-input
+                v-model="form.category"
+                autocomplete="off"
+                autofocus="true"
+              />
+              <has-error
+                :form="form"
+                field="category"
+                style="color:red"
+              />
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="Área" :label-width="formLabelWidth">
-              <el-select v-model="form.area_id" placeholder="Select" clearable filterable>
-                <el-option v-for="area in areas" :key="area.id" :label="area.name" :value="area.id"></el-option>
+            <el-form-item
+              label="Área"
+              :label-width="formLabelWidth"
+            >
+              <el-select
+                v-model="form.area_id"
+                placeholder="Select"
+                clearable
+                filterable
+              >
+                <el-option
+                  v-for="area in areas"
+                  :key="area.id"
+                  :label="area.name"
+                  :value="area.id"
+                />
               </el-select>
-              <has-error :form="form" field="area_id" style="color:red"></has-error>
+              <has-error
+                :form="form"
+                field="area_id"
+                style="color:red"
+              />
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="Marca" :label-width="formLabelWidth">
-              <el-select v-model="form.brand_id" placeholder="Select" clearable filterable>
+            <el-form-item
+              label="Marca"
+              :label-width="formLabelWidth"
+            >
+              <el-select
+                v-model="form.brand_id"
+                placeholder="Select"
+                clearable
+                filterable
+              >
                 <el-option
                   v-for="brand in brands"
                   :key="brand.id"
                   :label="brand.name"
                   :value="brand.id"
-                ></el-option>
+                />
               </el-select>
-              <has-error :form="form" field="brand_id" style="color:red"></has-error>
+              <has-error
+                :form="form"
+                field="brand_id"
+                style="color:red"
+              />
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="Descripción" :label-width="formLabelWidth">
-              <el-input v-model="form.description" autocomplete="off"></el-input>
-              <has-error :form="form" field="description" style="color:red"></has-error>
+            <el-form-item
+              label="Descripción"
+              :label-width="formLabelWidth"
+            >
+              <el-input
+                v-model="form.description"
+                autocomplete="off"
+              />
+              <has-error
+                :form="form"
+                field="description"
+                style="color:red"
+              />
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="Precio" :label-width="formLabelWidth">
-              <el-input v-model="form.price" autocomplete="off" autofocus="true"></el-input>
-              <has-error :form="form" field="price" style="color:red"></has-error>
+            <el-form-item
+              label="Precio"
+              :label-width="formLabelWidth"
+            >
+              <el-input
+                v-model="form.price"
+                autocomplete="off"
+                autofocus="true"
+              />
+              <has-error
+                :form="form"
+                field="price"
+                style="color:red"
+              />
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="Color" :label-width="formLabelWidth">
-              <el-input v-model="form.color" autocomplete="off" autofocus="true"></el-input>
-              <has-error :form="form" field="color" style="color:red"></has-error>
+            <el-form-item
+              label="Color"
+              :label-width="formLabelWidth"
+            >
+              <el-input
+                v-model="form.color"
+                autocomplete="off"
+                autofocus="true"
+              />
+              <has-error
+                :form="form"
+                field="color"
+                style="color:red"
+              />
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="Transport guide" :label-width="formLabelWidth">
-              <el-input v-model="form.transport_guide" autocomplete="off" autofocus="true"></el-input>
-              <has-error :form="form" field="transport_guide" style="color:red"></has-error>
+            <el-form-item
+              label="Transport guide"
+              :label-width="formLabelWidth"
+            >
+              <el-input
+                v-model="form.transport_guide"
+                autocomplete="off"
+                autofocus="true"
+              />
+              <has-error
+                :form="form"
+                field="transport_guide"
+                style="color:red"
+              />
             </el-form-item>
           </el-col>
         </el-row>
       </el-container>
     </el-form>
-    <span slot="footer" class="dialog-footer">
-      <el-button @click="closeModal()">Cancel</el-button>
-      <el-button type="primary" @click="saveProduct()" icon="el-icon-check">Guardar</el-button>
+    <span
+      slot="footer"
+      class="dialog-footer"
+    >
+      <el-button @click="closeModal()">
+        Cancel
+      </el-button>
+      <el-button
+        type="primary"
+        icon="el-icon-check"
+        @click="saveProduct()"
+      >
+        Guardar
+      </el-button>
     </span>
   </el-dialog>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions } from 'vuex'
 
-import { Form } from "vform";
+import { Form } from 'vform'
 
 export default {
-  data() {
+  data () {
     return {
-      labelPosition: "left",
+      labelPosition: 'left',
       form: new Form({
-        part_number: "",
-        code: "",
-        name: "",
-        category: "",
-        price: "",
-        description: "",
-        area_id: "",
-        brand_id: "",
-        color: "",
-        transport_guide: ""
+        part_number: '',
+        code: '',
+        name: '',
+        category: '',
+        price: '',
+        description: '',
+        area_id: '',
+        brand_id: '',
+        color: '',
+        transport_guide: ''
       }),
-      formLabelWidth: "120px"
-    };
+      formLabelWidth: '120px'
+    }
   },
   methods: {
-    ...mapActions("products", ["createProduct", "updateStateModal"]),
-    closeModal() {
+    ...mapActions('products', ['createProduct', 'updateStateModal']),
+    closeModal () {
       this.updateStateModal(!this.modalOpenCreate).then(() => {
-        this.form.clear();
-        this.form.reset();
-      });
+        this.form.clear()
+        this.form.reset()
+      })
     },
-    saveProduct() {
+    saveProduct () {
       this.createProduct(this.form).then(() => {
-        this.$swal.fire("", "El producto ha sido creado", "success");
-      });
+        this.$swal.fire('', 'El producto ha sido creado', 'success')
+      })
     }
   },
   computed: {
-    ...mapState("products", ["modalOpenCreate"]),
-    ...mapState("brands", ["brands"]),
-    ...mapState("areas", ["areas"])
+    ...mapState('products', ['modalOpenCreate']),
+    ...mapState('brands', ['brands']),
+    ...mapState('areas', ['areas'])
   }
-};
+}
 </script>
 
 <style scoped>

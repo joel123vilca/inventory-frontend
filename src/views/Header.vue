@@ -1,5 +1,9 @@
 <template>
-  <el-menu :default-active="index" class="el-menu-demo" mode="horizontal">
+  <el-menu
+    :default-active="index"
+    class="el-menu-demo"
+    mode="horizontal"
+  >
     <!-- <el-menu-item index="1">Processing Center</el-menu-item>
     <el-submenu index="2">
       <template slot="title">Workspace</template>
@@ -11,7 +15,7 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style>

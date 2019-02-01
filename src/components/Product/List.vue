@@ -1,10 +1,17 @@
 <template>
   <div>
     <el-container class="nombre-container">
-      <el-row type="flex" class="row-bg" justify="space-around" :gutter="20">
+      <el-row
+        type="flex"
+        class="row-bg"
+        justify="space-around"
+        :gutter="20"
+      >
         <el-col :span="4">
           <div class="grid-content">
-            <h2 class="texto-principal">Productos</h2>
+            <h2 class="texto-principal">
+              Productos
+            </h2>
           </div>
         </el-col>
         <el-col :span="14">
@@ -13,7 +20,9 @@
             round
             icon="el-icon-plus"
             @click="modalCreate=!modalCreate"
-          >Añadir</el-button>
+          >
+            Añadir
+          </el-button>
         </el-col>
         <el-col :span="3">
           <download-excel
@@ -22,14 +31,23 @@
             :fields="json_fields"
             title="Reporte de productos"
           >
-            <el-button type="success" round icon="el-icon-download">Excel
+            <el-button
+              type="success"
+              round
+              icon="el-icon-download"
+            >
+              Excel
               <!-- <img src="@/assets/excel.png" style="width:10%"> -->
             </el-button>
           </download-excel>
         </el-col>
         <el-col :span="8">
           <div class="grid-content bg-purple">
-            <el-input placeholder="Escribe algo" prefix-icon="el-icon-search" v-model="search"></el-input>
+            <el-input
+              v-model="search"
+              placeholder="Escribe algo"
+              prefix-icon="el-icon-search"
+            />
           </div>
         </el-col>
       </el-row>
@@ -41,39 +59,68 @@
       style="width: 100%"
     >
       <!-- <el-table-column label="ID" prop="id"></el-table-column> -->
-      <el-table-column type="index" width="50"></el-table-column>
-      <el-table-column label="Name" prop="name"></el-table-column>
-      <el-table-column label="Categoria" prop="category"></el-table-column>
-      <el-table-column label="Marca" prop="brand.name" sortable></el-table-column>
-      <el-table-column label="Area" prop="area.name" sortable></el-table-column>
+      <el-table-column
+        type="index"
+        width="50"
+      />
+      <el-table-column
+        label="Name"
+        prop="name"
+      />
+      <el-table-column
+        label="Categoria"
+        prop="category"
+      />
+      <el-table-column
+        label="Marca"
+        prop="brand.name"
+        sortable
+      />
+      <el-table-column
+        label="Area"
+        prop="area.name"
+        sortable
+      />
       <el-table-column label="Acciones">
         <template slot-scope="scope">
-          <el-button size="small" type="primary" @click="handleShow(scope.$index, scope.row)">
-            <i class="el-icon-view"></i>
+          <el-button
+            size="small"
+            type="primary"
+            @click="handleShow(scope.$index, scope.row)"
+          >
+            <i class="el-icon-view" />
           </el-button>
 
-          <el-button size="small" type="warning" @click="handleEdit(scope.$index, scope.row)">
-            <i class="el-icon-edit"></i>
+          <el-button
+            size="small"
+            type="warning"
+            @click="handleEdit(scope.$index, scope.row)"
+          >
+            <i class="el-icon-edit" />
           </el-button>
 
-          <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">
-            <i class="el-icon-delete"></i>
+          <el-button
+            size="small"
+            type="danger"
+            @click="handleDelete(scope.$index, scope.row)"
+          >
+            <i class="el-icon-delete" />
           </el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <AddProduct/>
-    <EditProduct/>
-    <ShowProduct/>
+    <AddProduct />
+    <EditProduct />
+    <ShowProduct />
   </div>
 </template>
 
 <script>
-import AddProduct from "@/components/Product/modals/AddProduct";
-import EditProduct from "@/components/Product/modals/EditProduct";
-import ShowProduct from "@/components/Product/modals/ShowProduct.vue";
-import { mapState, mapActions } from "vuex";
+import AddProduct from '@/components/Product/modals/AddProduct'
+import EditProduct from '@/components/Product/modals/EditProduct'
+import ShowProduct from '@/components/Product/modals/ShowProduct.vue'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
@@ -81,98 +128,98 @@ export default {
     EditProduct,
     ShowProduct
   },
-  data() {
+  data () {
     return {
-      search: "",
+      search: '',
       json_fields: {
-        Nombre: "name",
-        Código: "code",
-        Categoria: "category",
-        "Part number": "part_number",
-        "Precio (S/.)": "price",
-        Descripción: "description",
-        Area: "area.name",
-        Marca: "brand.name"
+        Nombre: 'name',
+        Código: 'code',
+        Categoria: 'category',
+        'Part number': 'part_number',
+        'Precio (S/.)': 'price',
+        Descripción: 'description',
+        Area: 'area.name',
+        Marca: 'brand.name'
       }
       // loading: "false"
-    };
+    }
   },
-  created() {
-    this.getProducts();
-    this.getBrands();
-    this.getAreas();
+  created () {
+    this.getProducts()
+    this.getBrands()
+    this.getAreas()
   },
   methods: {
-    ...mapActions("products", [
-      "getProducts",
-      "getDetailProduct",
-      "deleteProduct"
+    ...mapActions('products', [
+      'getProducts',
+      'getDetailProduct',
+      'deleteProduct'
     ]),
-    ...mapActions("brands", ["getBrands"]),
-    ...mapActions("areas", ["getAreas"]),
-    handleShow(index, row) {
-      this.getDetailProduct(row.id);
-      this.modalShow = !this.modalShow;
+    ...mapActions('brands', ['getBrands']),
+    ...mapActions('areas', ['getAreas']),
+    handleShow (index, row) {
+      this.getDetailProduct(row.id)
+      this.modalShow = !this.modalShow
     },
-    handleEdit(index, row) {
-      this.getDetailProduct(row.id);
-      this.modalEdit = !this.modalEdit;
+    handleEdit (index, row) {
+      this.getDetailProduct(row.id)
+      this.modalEdit = !this.modalEdit
     },
-    handleDelete(index, row) {
+    handleDelete (index, row) {
       this.$swal
         .fire({
-          title: "Estas seguro?",
-          text: "No seras capaz de revertir esto!",
-          type: "warning",
+          title: 'Estas seguro?',
+          text: 'No seras capaz de revertir esto!',
+          type: 'warning',
           showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Si, eliminalo!"
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, eliminalo!'
         })
         .then(result => {
           if (result.value) {
             this.deleteProduct(row.id).then(() => {
-              this.$swal.fire("", "El producto ha sido eliminado.", "success");
-            });
+              this.$swal.fire('', 'El producto ha sido eliminado.', 'success')
+            })
           } else if (result.dismiss === this.$swal.DismissReason.cancel) {
             this.$swal.fire(
-              "Cancelled",
-              "La operación ha sido cancelada",
-              "error"
-            );
+              'Cancelled',
+              'La operación ha sido cancelada',
+              'error'
+            )
           }
-        });
+        })
     }
   },
   computed: {
-    ...mapState("products", ["products", "loadingTable"]),
-    ...mapState("brands", ["brands"]),
+    ...mapState('products', ['products', 'loadingTable']),
+    ...mapState('brands', ['brands']),
     modalCreate: {
-      get() {
-        return this.$store.getters.getModalCreate;
+      get () {
+        return this.$store.getters.getModalCreate
       },
-      set(value) {
-        this.$store.dispatch("products/updateStateModal", value);
+      set (value) {
+        this.$store.dispatch('products/updateStateModal', value)
       }
     },
     modalShow: {
-      get() {
-        return this.$store.getters.getModalShow;
+      get () {
+        return this.$store.getters.getModalShow
       },
-      set(value) {
-        this.$store.dispatch("products/updateStateModalShow", value);
+      set (value) {
+        this.$store.dispatch('products/updateStateModalShow', value)
       }
     },
     modalEdit: {
-      get() {
-        return this.$store.getters.getModalEdit;
+      get () {
+        return this.$store.getters.getModalEdit
       },
-      set(value) {
-        this.$store.dispatch("products/updateStateModalEdit", value);
+      set (value) {
+        this.$store.dispatch('products/updateStateModalEdit', value)
       }
     }
   }
-};
+}
 </script>
 
 <style>

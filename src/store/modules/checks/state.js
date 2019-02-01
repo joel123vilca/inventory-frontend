@@ -1,5 +1,5 @@
 export default {
-    checks: [],
-    check: '',
-    loadingTable: true
+  checks: [],
+  check: '',
+  loadingTable: true
 }
