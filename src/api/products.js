@@ -36,7 +36,6 @@ export default {
 
     getDetail(payload = {}) {
         const productId = payload || {}
-        console.log(productId);
         return new Promise((resolve, reject) => {
           axios
             .get(`${HOST}/products/${productId}`)
@@ -47,7 +46,6 @@ export default {
     update(payload = {}) {
         const productId = payload.id || {}
         console.log(payload);
-        // const vForm = payload.vForm || {}
 
         return new Promise((resolve, reject) => {
           axios({
@@ -68,7 +66,6 @@ export default {
     
     delete(payload = {}) {
         const productId = payload || {}
-        // console.log(payload);
         return new Promise((resolve, reject) => {
           axios({
             url: `${HOST}/products/${productId}`,

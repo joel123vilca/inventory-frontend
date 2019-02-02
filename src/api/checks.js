@@ -5,7 +5,6 @@ const HOST = 'http://localhost:8000/api'
 export default {
     get(payload = {}) {
         const areaId = payload || {}
-        console.log(areaId);
             return new Promise((resolve, reject) => {
                 axios 
                     .get(`${HOST}/areas/${areaId}/checks`)
@@ -14,7 +13,6 @@ export default {
         })
     },
     post(payload = {}) {
-        console.log(payload.idarea);
         return new Promise((resolve, reject) => {
             axios({
                 url:`${HOST}/areas/${payload.idarea}/checks`,
@@ -41,7 +39,6 @@ export default {
         })
     },
     postDetail(payload = {}) {
-        console.log(payload.check_id);
         return new Promise((resolve, reject) => {
             axios({
                 url:`${HOST}/checks/${payload.check_id}/details`,

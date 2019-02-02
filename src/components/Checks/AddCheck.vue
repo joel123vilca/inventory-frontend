@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(product, index) in products" :key="product.id">
+      <tr v-for="(product, index) in products" :key="product.id" class="status">
         <td>{{product.code}}</td>
         <td>{{product.name}}</td>
         <td><input v-model="observation"  class="form-control" ></td>
@@ -27,22 +27,22 @@
 import { mapActions, mapState } from 'vuex';
 
   export default {
-    data:{ 
-      observation: "",
-      state:false
-  },
     methods:{
         ...mapActions('checks',["getProducts",'getChecks', 'saveCheck']),
         sendCheck(index){
-          console.log(this.$route.paramans.checkId);
           var detail = {
-            check_id: this.$route.paramans.checkId,
+            check_id: this.checkId,
             state: this.state,
             observation: this.observation,
             product_id: this.products[index].id
           };
+          if(this.state ==  false){
+            return '<style> .status{background-color: green;}</style>';
+          } else if (this.state == true){
+            return '<style> .status{background-color: yellow;}</style>';
+          }
           this.saveCheck(detail);
-        }
+        },
     },
     computed:{
         ...mapState("checks",["products",'checks','checkId'])
@@ -59,6 +59,7 @@ import { mapActions, mapState } from 'vuex';
     margin-left: 50%;
   }
   @import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+
 </style>
 
 

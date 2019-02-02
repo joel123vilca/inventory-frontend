@@ -23,13 +23,13 @@ export const createCheck = ({commit,dispatch},payload = {}) => {
         commit('GET_CHECKID', {checkId: response.data})
         resolve(response)
     })
-    .catch(() => {
-        console.log('Error al crear check')
+    .catch((error) => {
+        reject(error)
         })
     })
 }
 
-export const getProducts = ({commit}, payload = {}) => {
+export const getProducts = ({commit,dispatch}, payload = {}) => {
     
     return new Promise((resolve, reject) => {
         checksApi
@@ -58,7 +58,7 @@ export const saveCheck = ({commit,dispatch},payload = {}) => {
     })
 }
 
-export const getDetails = ({commit,dispatch}, payload = {}) => {
+export const getDetails = ({commit}, payload = {}) => {
     return new Promise((resolve,reject) => {
         checksApi
         .getDetails(payload)

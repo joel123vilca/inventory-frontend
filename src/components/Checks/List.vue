@@ -71,7 +71,6 @@ export default {
     ...mapActions('checks',["getChecks","createCheck"]),
     ...mapActions('areas',["getDetailArea"]),
     handleDetail(index, row) {
-      console.log(row.id);
       var id = row.id
       this.$router.push({ name: 'details', params: { id } })
     },
@@ -95,7 +94,6 @@ export default {
         if(result.value){
           this.createCheck(id).then(() => {
             this.$swal.fire("", "El check ha sido creado","success");
-            const checkId = this.checkId
             const Id = this.area.id
             this.$router.push({ name: 'AddCheck', params: { Id } })
           });
