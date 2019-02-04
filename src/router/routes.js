@@ -51,10 +51,55 @@ export default [
     component: NewMovement
   },
 
-  {
-    path: '/areas/:id',
-    name: 'checks',
-    component: ListChecks
-  },
-  { path: '*', redirect: '/' }
-]
+export default[
+    {
+      path: '/',
+      name: 'home',
+      component: Main
+    },
+    {
+      path: '/brands',
+      name: 'brands',
+      component: ListBrand
+    },
+    {
+      path: '/products',
+      name: 'products',
+      component: ListProduct
+    },
+    {
+      path: '/areas',
+      name: 'areas',
+      component: ListArea
+    },
+    {
+      path: '/movements',
+      name: 'movements',
+      component: ListMovement,
+    },
+    {
+      path: '/movements/new',
+      name: 'newMovement',
+      component: NewMovement,
+    },
+    {
+      path: '/areas/:id',
+      name: 'checks',
+      component: ListChecks
+    },
+    {
+      path:'/check/:id',
+      name: 'AddCheck',
+      component: AddCheck
+    },
+    {
+      path:'/detail/:id',
+      name: 'details',
+      component: DetailCheck
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import(/* webpackChunkName: "about" */ '@/components/Brand/List.vue')
+    }
+  ]

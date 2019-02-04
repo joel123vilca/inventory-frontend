@@ -276,7 +276,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .el-row {
   width: 100%;
 }

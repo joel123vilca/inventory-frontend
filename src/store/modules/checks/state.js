@@ -1,5 +1,9 @@
 export default {
-  checks: [],
-  check: '',
-  loadingTable: true
+    checks: [],
+    check: '',
+    products: [],
+    product:'',
+    checkId:'',
+    details: [],
+    loadingTable: true
 }

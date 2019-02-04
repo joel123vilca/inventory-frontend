@@ -1,40 +1,12 @@
 <template>
   <div>
-    <el-container class="nombre-container">
-      <el-row
-        type="flex"
-        class="row-bg"
-        justify="space-around"
-        :gutter="20"
-      >
-        <el-col :span="4">
-          <div class="grid-content">
-            <h2 class="texto-principal">
-              Areas
-            </h2>
-          </div>
-        </el-col>
-        <el-col :span="14">
-          <el-button
-            type="warning"
-            round
-            icon="el-icon-plus"
-            @click="modalCreate=!modalCreate"
-          >
-            Añadir
-          </el-button>
-        </el-col>
-        <el-col :span="8">
-          <div class="grid-content bg-purple">
-            <el-input
-              v-model="search"
-              placeholder="Buscar Area"
-              prefix-icon="el-icon-search"
-            />
-          </div>
-        </el-col>
-      </el-row>
-    </el-container>
+    <nav class="navbar" >
+  <a class="navbar-brand">Areas</a>
+  <button class="btn btn-primary" type="submit" @click="modalCreate=!modalCreate">+ Añadir</button>
+  <div class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" v-model="search" aria-label="Search">
+  </div>
+  </nav>
 
     <el-table
       v-loading="false"
@@ -157,4 +129,7 @@ export default {
 </script>
 
 <style>
+.navbar{
+  background-color: #FFA940;
+}
 </style>
