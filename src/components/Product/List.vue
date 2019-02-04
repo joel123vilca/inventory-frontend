@@ -224,4 +224,7 @@ export default {
 </script>
 
 <style>
+.invalid-feedback {
+  display: block;
+}
 </style>

@@ -14,7 +14,7 @@
         <el-form-item
           label="User"
           prop="username"
-          :show-message="!!submitErrors.username"
+          :show-message="submitErrors.username"
           :error="submitErrors.username ? submitErrors.username[0] : ''"
         >
           <el-input
@@ -26,7 +26,7 @@
         <el-form-item
           label="Password"
           prop="password"
-          :show-message="!!submitErrors.password"
+          :show-message="submitErrors.password"
           :error="submitErrors.password ? submitErrors.password[0] : ''"
         >
           <el-input
@@ -54,7 +54,8 @@
 </template>
 
 <script>
-import { userService } from '@/_services/user.service.js'
+import { userService } from '@/api/user.js'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   data () {
@@ -95,26 +96,38 @@ export default {
       submitErrors: {}
     }
   },
-
+  created () {
+    if (this.status.loggedIn) {
+      this.$router.push('/')
+    } else {
+      this.$store.dispatch('auth/logout')
+    }
+  },
+  computed: {
+    ...mapState('auth', ['status'])
+  },
   methods: {
+    ...mapActions('auth', ['login']),
     submitForm (formName) {
       this.$refs[formName].validate(valid => {
         if (!valid) return false
+        this.login({
+          data: {
+            username: this.loginForm.username,
+            password: this.loginForm.password
+          }
+        }).then(() => {
+          this.$router.push('/')
+        })
 
-        userService
-          .login({
-            data: {
-              username: this.loginForm.username,
-              password: this.loginForm.password
-            }
-          })
-          .then(response => {
-            this.$store.commit('loginSuccess', response)
-            this.$router.push({ name: 'home' })
-          })
-          .catch(error => {
-            this.submitErrors = error.response.data.errors || {}
-          })
+        // userService
+        //   .login()
+        //   .then(response => {
+        //     this.$router.push({ name: 'home' })
+        //   })
+        //   .catch(error => {
+        //     this.submitErrors = error.response.data.errors || {}
+        //   })
       })
     },
 

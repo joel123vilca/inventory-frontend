@@ -1,4 +1,4 @@
-import { userService } from '@/_services/user.service.js'
+import { userService } from '@/api/user.js'
 
 export const getAll = ({ commit }) => {
   commit('getAllRequest')
