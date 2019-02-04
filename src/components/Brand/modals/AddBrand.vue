@@ -67,6 +67,9 @@ export default {
       formLabelWidth: '120px'
     }
   },
+  computed: {
+    ...mapState('brands', ['modalOpenCreate'])
+  },
   methods: {
     ...mapActions('brands', ['createBrand', 'updateStateModal']),
     closeModal () {
@@ -80,10 +83,8 @@ export default {
         this.$swal.fire('', 'La marca ha sido creada', 'success')
       })
     }
-  },
-  computed: {
-    ...mapState('brands', ['modalOpenCreate'])
   }
+
 }
 </script>
 

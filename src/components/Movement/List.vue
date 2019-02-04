@@ -102,18 +102,19 @@ export default {
       }
     }
   },
-  methods: {
-    ...mapActions('movements', ['getMovements']),
-    cambiarRuta () {
-      this.$router.push('/movements/new')
-    }
-  },
   computed: {
     ...mapState('movements', ['movements'])
   },
   created () {
     this.getMovements()
+  },
+  methods: {
+    ...mapActions('movements', ['getMovements']),
+    cambiarRuta () {
+      this.$router.push('/movements/new')
+    }
   }
+
 }
 </script>
 

@@ -80,15 +80,16 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 export default {
+  computed: {
+    ...mapState('areas', ['areas'])
+  },
   created () {
     this.getAreas()
   },
   methods: {
     ...mapActions('areas', ['getAreas'])
-  },
-  computed: {
-    ...mapState('areas', ['areas'])
   }
+
 }
 </script>
 

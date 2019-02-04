@@ -98,6 +98,25 @@ export default {
       loading: 'false'
     }
   },
+  computed: {
+    ...mapState('areas', ['areas']),
+    modalCreate: {
+      get () {
+        return this.$store.getters.getModalCreate
+      },
+      set (value) {
+        this.$store.dispatch('areas/updateStateModal', value)
+      }
+    },
+    modalEdit: {
+      get () {
+        return this.$store.getters.getModalEdit
+      },
+      set (value) {
+        this.$store.dispatch('areas/updateStateModalEdit', value)
+      }
+    }
+  },
   created () {
     this.getAreas()
   },
@@ -132,26 +151,8 @@ export default {
           }
         })
     }
-  },
-  computed: {
-    ...mapState('areas', ['areas']),
-    modalCreate: {
-      get () {
-        return this.$store.getters.getModalCreate
-      },
-      set (value) {
-        this.$store.dispatch('areas/updateStateModal', value)
-      }
-    },
-    modalEdit: {
-      get () {
-        return this.$store.getters.getModalEdit
-      },
-      set (value) {
-        this.$store.dispatch('areas/updateStateModalEdit', value)
-      }
-    }
   }
+
 }
 </script>
 

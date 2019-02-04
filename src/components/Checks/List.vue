@@ -68,8 +68,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+
 import ListProduct from '@/components/Product/List.vue'
 export default {
   components: {

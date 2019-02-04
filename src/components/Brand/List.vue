@@ -109,6 +109,25 @@ export default {
       loading: 'false'
     }
   },
+  computed: {
+    ...mapState('brands', ['brands', 'loadingTable']),
+    modalCreate: {
+      get () {
+        return this.$store.getters.getModalCreate
+      },
+      set (value) {
+        this.$store.dispatch('brands/updateStateModal', value)
+      }
+    },
+    modalEdit: {
+      get () {
+        return this.$store.getters.getModalEdit
+      },
+      set (value) {
+        this.$store.dispatch('brands/updateStateModalEdit', value)
+      }
+    }
+  },
   created () {
     this.getBrands()
   },
@@ -143,26 +162,8 @@ export default {
           }
         })
     }
-  },
-  computed: {
-    ...mapState('brands', ['brands', 'loadingTable']),
-    modalCreate: {
-      get () {
-        return this.$store.getters.getModalCreate
-      },
-      set (value) {
-        this.$store.dispatch('brands/updateStateModal', value)
-      }
-    },
-    modalEdit: {
-      get () {
-        return this.$store.getters.getModalEdit
-      },
-      set (value) {
-        this.$store.dispatch('brands/updateStateModalEdit', value)
-      }
-    }
   }
+
 }
 </script>
 

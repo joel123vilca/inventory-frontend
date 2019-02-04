@@ -144,6 +144,34 @@ export default {
       // loading: "false"
     }
   },
+  computed: {
+    ...mapState('products', ['products', 'loadingTable']),
+    ...mapState('brands', ['brands']),
+    modalCreate: {
+      get () {
+        return this.$store.getters.getModalCreate
+      },
+      set (value) {
+        this.$store.dispatch('products/updateStateModal', value)
+      }
+    },
+    modalShow: {
+      get () {
+        return this.$store.getters.getModalShow
+      },
+      set (value) {
+        this.$store.dispatch('products/updateStateModalShow', value)
+      }
+    },
+    modalEdit: {
+      get () {
+        return this.$store.getters.getModalEdit
+      },
+      set (value) {
+        this.$store.dispatch('products/updateStateModalEdit', value)
+      }
+    }
+  },
   created () {
     this.getProducts()
     this.getBrands()
@@ -190,35 +218,8 @@ export default {
           }
         })
     }
-  },
-  computed: {
-    ...mapState('products', ['products', 'loadingTable']),
-    ...mapState('brands', ['brands']),
-    modalCreate: {
-      get () {
-        return this.$store.getters.getModalCreate
-      },
-      set (value) {
-        this.$store.dispatch('products/updateStateModal', value)
-      }
-    },
-    modalShow: {
-      get () {
-        return this.$store.getters.getModalShow
-      },
-      set (value) {
-        this.$store.dispatch('products/updateStateModalShow', value)
-      }
-    },
-    modalEdit: {
-      get () {
-        return this.$store.getters.getModalEdit
-      },
-      set (value) {
-        this.$store.dispatch('products/updateStateModalEdit', value)
-      }
-    }
   }
+
 }
 </script>
 

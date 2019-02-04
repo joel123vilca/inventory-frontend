@@ -99,6 +99,9 @@ export default {
       formLabelWidth: '120px'
     }
   },
+  computed: {
+    ...mapState('areas', ['modalOpenEdit', 'area'])
+  },
   methods: {
     ...mapActions('areas', ['updateArea', 'updateStateModalEdit']),
     modalClose () {
@@ -116,10 +119,8 @@ export default {
         this.$swal.fire('', 'El área ha sido actualizada', 'success')
       })
     }
-  },
-  computed: {
-    ...mapState('areas', ['modalOpenEdit', 'area'])
   }
+
 }
 </script>
 

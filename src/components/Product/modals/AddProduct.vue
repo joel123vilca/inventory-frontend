@@ -10,8 +10,8 @@
   >
     <el-form
       :model="form"
-      class="formulario-creación"
       :label-position="labelPosition"
+      class="formulario-creación"
     >
       <el-container>
         <el-row :gutter="30">
@@ -253,6 +253,11 @@ export default {
       formLabelWidth: '120px'
     }
   },
+  computed: {
+    ...mapState('products', ['modalOpenCreate']),
+    ...mapState('brands', ['brands']),
+    ...mapState('areas', ['areas'])
+  },
   methods: {
     ...mapActions('products', ['createProduct', 'updateStateModal']),
     closeModal () {
@@ -266,12 +271,8 @@ export default {
         this.$swal.fire('', 'El producto ha sido creado', 'success')
       })
     }
-  },
-  computed: {
-    ...mapState('products', ['modalOpenCreate']),
-    ...mapState('brands', ['brands']),
-    ...mapState('areas', ['areas'])
   }
+
 }
 </script>
 

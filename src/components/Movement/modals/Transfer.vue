@@ -118,6 +118,9 @@ export default {
     ...mapState('products', ['product']),
     ...mapState('areas', ['areas'])
   },
+  created () {
+    this.getAreas()
+  },
   methods: {
     ...mapActions('movements', ['updateStateModalTransfer', 'createMovement']),
     ...mapActions('areas', ['getAreas']),
@@ -125,10 +128,8 @@ export default {
       this.form.id = this.product.id
       this.createMovement(this.form)
     }
-  },
-  created () {
-    this.getAreas()
   }
+
 }
 </script>
 

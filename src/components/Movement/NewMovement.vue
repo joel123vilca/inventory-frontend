@@ -79,6 +79,13 @@ export default {
   components: {
     Transfer
   },
+  computed: {
+    ...mapState('products', ['products']),
+    ...mapState('movements', ['modalOpenTransfer'])
+  },
+  created () {
+    this.getProducts()
+  },
   methods: {
     ...mapActions('products', ['getProducts', 'getDetailProduct']),
     ...mapActions('movements', ['updateStateModalTransfer']),
@@ -86,14 +93,8 @@ export default {
       this.getDetailProduct(row.id)
       this.updateStateModalTransfer(!this.modalOpenTransfer)
     }
-  },
-  computed: {
-    ...mapState('products', ['products']),
-    ...mapState('movements', ['modalOpenTransfer'])
-  },
-  created () {
-    this.getProducts()
   }
+
 }
 </script>
 

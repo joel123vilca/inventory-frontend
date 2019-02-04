@@ -101,13 +101,15 @@ export default {
       this.$refs[formName].validate(valid => {
         if (!valid) return false
 
-        userService.login({
-          data: {
-            username: this.loginForm.username,
-            password: this.loginForm.password
-          }
-        })
+        userService
+          .login({
+            data: {
+              username: this.loginForm.username,
+              password: this.loginForm.password
+            }
+          })
           .then(response => {
+            this.$store.commit('loginSuccess', response)
             this.$router.push({ name: 'home' })
           })
           .catch(error => {

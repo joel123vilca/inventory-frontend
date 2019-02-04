@@ -40,6 +40,17 @@ export default {
       aldo: false
     }
   },
+  computed: {
+    ...mapState('alerts', ['message', 'type']),
+    ...mapState('auth', ['status'])
+  },
+
+  watch: {
+    $route () {
+      // clear alert on location change
+      this.$store.dispatch('alerts/clear')
+    }
+  },
   created () {
     axios.interceptors.response.use(undefined, function (err) {
       return new Promise(function () {
@@ -53,20 +64,7 @@ export default {
       })
     })
   },
-  computed: {
-    ...mapState('alerts', ['message', 'type']),
-    ...mapState('auth', ['status'])
-  },
-  watch: {
-    $route () {
-      // clear alert on location change
-      this.$store.dispatch('alerts/clear')
-    }
-  },
   methods: {}
-  // mounted() {
-  //   this.handleLoading();
-  // }
 }
 </script>
 

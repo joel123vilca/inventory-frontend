@@ -65,6 +65,9 @@ export default {
       formLabelWidth: '120px'
     }
   },
+  computed: {
+    ...mapState('brands', ['modalOpenEdit', 'brand'])
+  },
   methods: {
     ...mapActions('brands', ['updateBrand', 'updateStateModalEdit']),
     modalClose () {
@@ -80,10 +83,8 @@ export default {
         this.$swal.fire('', 'La marca ha sido actualizada', 'success')
       })
     }
-  },
-  computed: {
-    ...mapState('brands', ['modalOpenEdit', 'brand'])
   }
+
 }
 </script>
 
