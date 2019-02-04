@@ -1,7 +1,7 @@
 export default {
-    modalOpenTransfer:false,
-    // modalOpenEdit:false,
-    movements:[],
-    // product:'',
-    loadingTable:true
+  modalOpenTransfer: false,
+  // modalOpenEdit:false,
+  movements: [],
+  // product:'',
+  loadingTable: true
 }

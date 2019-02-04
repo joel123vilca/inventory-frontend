@@ -1,5 +1,8 @@
 <template>
-  <el-tabs type="border-card" @tab-click="handleClick">
+  <el-tabs
+    type="border-card"
+    @tab-click="handleClick"
+  >
     <el-tab-pane label="checks">
        <div>
     <el-container class="nombre-container">
@@ -36,36 +39,39 @@
       </el-table-column>
     </el-table>
 
-    <AddModalProduct/>
-  </div>
+        <AddModalProduct />
+      </div>
     </el-tab-pane>
-    <el-tab-pane label="products"><ListProduct/></el-tab-pane>
+    <el-tab-pane label="products">
+      <ListProduct />
+    </el-tab-pane>
   </el-tabs>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 
-import { mapState } from 'vuex';
-import { mapActions } from 'vuex';
-import ListProduct from '@/components/Product/List.vue';
+import ListProduct from '@/components/Product/List.vue'
 export default {
   components: {
     ListProduct
   },
-  data() {
+  data () {
     return {
-      search: "",
-      loading: "false"
-    };
+      search: '',
+      loading: 'false'
+    }
   },
- created(){
-    this.getChecks(this.$route.params.id);
-    this.getDetailArea(this.$route.params.id);
+  created () {
+    this.getChecks(this.$route.params.id)
+    this.getDetailArea(this.$route.params.id)
+    this.getProductsByArea(this.$route.params.id)
   },
-  beforeRouteUpdate(to,from,next) {
+  beforeRouteUpdate (to, from, next) {
     next()
-    this.getChecks(this.$route.params.id);
-    this.getDetailArea(this.$route.params.id);
+    this.getChecks(this.$route.params.id)
+    this.getDetailArea(this.$route.params.id)
+    this.getProductsByArea(this.$route.params.id)
   },
   methods:{
     ...mapActions('checks',["getChecks","createCheck"]),
@@ -111,6 +117,6 @@ export default {
     ...mapState("checks",["checks","checkId"]),
     ...mapState("areas",["area"])
   }
-};
+}
 </script>
 

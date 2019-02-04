@@ -4,64 +4,88 @@
     :visible.sync="modalOpenCreate"
     :close-on-click-modal="false"
     center
+    :show-close="false"
   >
-    <el-form :model="form" class="formulario-creación" :label-position="labelPosition">
+    <el-form
+      :model="form"
+      class="formulario-creación"
+      :label-position="labelPosition"
+    >
       <el-container>
         <el-row style="width:100%">
           <el-col :span="24">
-            <el-form-item label="Nombre" :label-width="formLabelWidth">
+            <el-form-item
+              label="Nombre"
+              :label-width="formLabelWidth"
+            >
               <el-input
                 v-model="form.name"
-                :class="form.errors.has('name') ? 'error-color' : ''"
                 autocomplete="off"
                 autofocus
-              ></el-input>
-              <has-error :form="form" field="name" style="color:red"></has-error>
+              />
+              <has-error
+                :form="form"
+                field="name"
+                style="color:red"
+              />
             </el-form-item>
           </el-col>
         </el-row>
       </el-container>
     </el-form>
 
-    <span slot="footer" class="dialog-footer">
-      <el-button @click="updateStateModal(!modalOpenCreate)">Cancel</el-button>
-      <el-button type="primary" @click="createBrand(form)" icon="el-icon-check">Guardar</el-button>
+    <span
+      slot="footer"
+      class="dialog-footer"
+    >
+      <el-button @click="closeModal()">
+        Cancel
+      </el-button>
+      <el-button
+        type="primary"
+        icon="el-icon-check"
+        @click="saveBrand()"
+      >
+        Guardar
+      </el-button>
     </span>
   </el-dialog>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions } from 'vuex'
 
-import { Form, HasError, AlertError } from "vform";
-// import Vue from "vue";
-// Vue.component(HasError.name, HasError);
-// Vue.component(AlertError.name, AlertError);
+import { Form } from 'vform'
 
 export default {
-  data() {
+  data () {
     return {
-      labelPosition: "left",
+      labelPosition: 'left',
       form: new Form({
-        name: ""
+        name: ''
       }),
-      formLabelWidth: "120px"
-    };
-  },
-  methods: {
-    ...mapActions("brands", ["createBrand", "updateStateModal"])
-    // changeState() {
-    //   this.updateStateModal(!this.modalOpenCreate);
-    // }
-    // saveBrand() {
-    //   this.createBrand(this.form);
-    //   this.$store.dispatch("createBrand", this.form);
-    // }
+      formLabelWidth: '120px'
+    }
   },
   computed: {
-    ...mapState("brands", ["modalOpenCreate"])
+    ...mapState('brands', ['modalOpenCreate'])
+  },
+  methods: {
+    ...mapActions('brands', ['createBrand', 'updateStateModal']),
+    closeModal () {
+      this.updateStateModal(!this.modalOpenCreate).then(() => {
+        this.form.reset()
+        this.form.clear()
+      })
+    },
+    saveBrand () {
+      this.createBrand(this.form).then(() => {
+        this.$swal.fire('', 'La marca ha sido creada', 'success')
+      })
+    }
   }
-};
+
+}
 </script>
 
 <style scoped>

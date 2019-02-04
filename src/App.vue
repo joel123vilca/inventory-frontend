@@ -1,14 +1,21 @@
 <template>
   <div id="app">
     <el-container>
-      <Aside/>
+      <Aside v-if="status.loggedIn" />
       <el-container>
         <el-header>
-          <Header/>
+          <Header v-if="status.loggedIn" />
         </el-header>
         <el-main class="contenedor-principal">
+          <div
+            v-if="message"
+            :class="`alert ${type}`"
+          >
+            {{ message }}
+          </div>
+
           <router-view>
-            <Main/>
+            <Main />
           </router-view>
         </el-main>
       </el-container>
@@ -16,58 +23,49 @@
   </div>
 </template>
 
-
 <script>
-import Aside from "@/views/Aside";
-import Header from "@/views/Header";
-import Main from "@/views/Main";
+import Aside from '@/views/Aside'
+import Header from '@/views/Header'
+import Main from '@/views/Main'
+import axios from 'axios'
+import { mapState } from 'vuex'
 export default {
   components: {
     Aside,
     Header,
     Main
   },
-  data() {
+  data () {
     return {
-      labelPosition: "left",
-      variable: 0,
-      search: "",
-      loading: "false",
-      dialogTableVisible: false,
-      dialogFormVisible: false,
-      form: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: ""
-      },
-      formLabelWidth: "120px"
-    };
-  },
-  methods: {
-    handleEdit(index, row) {
-      console.log(index, row);
-    },
-    handleDelete(index, row) {
-      console.log(index, row);
-    },
-    handleLoading() {
-      while (this.variable < 100) {
-        this.variable++;
-      }
-    },
-    handleLoadTable() {
-      this.loading = false;
+      aldo: false
     }
   },
-  mounted() {
-    this.handleLoading();
-  }
-};
+  computed: {
+    ...mapState('alerts', ['message', 'type']),
+    ...mapState('auth', ['status'])
+  },
+
+  watch: {
+    $route () {
+      // clear alert on location change
+      this.$store.dispatch('alerts/clear')
+    }
+  },
+  created () {
+    axios.interceptors.response.use(undefined, function (err) {
+      return new Promise(function () {
+        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+          // if you ever get an unauthorized, logout the user
+          this.$store.dispatch('auth/logout')
+          this.$router.push('/login')
+          // you can also redirect to /login if needed !
+        }
+        throw err
+      })
+    })
+  },
+  methods: {}
+}
 </script>
 
 <style>
@@ -129,6 +127,10 @@ export default {
 }
 
 .formulario-creación {
-  margin-bottom: 100px;
+  margin-bottom: 20px;
+}
+
+.invalid-feedback {
+  display: block;
 }
 </style>
