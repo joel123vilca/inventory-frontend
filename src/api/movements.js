@@ -25,8 +25,8 @@ export default {
         data: payload
       })
         .then(response => {
-          payload.reset(),
-          payload.clear(),
+          payload.reset()
+          payload.clear()
           resolve(response)
         })
         .catch(error => {

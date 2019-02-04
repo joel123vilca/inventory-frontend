@@ -118,6 +118,12 @@ export default {
           }
         }).then(() => {
           this.$router.push('/')
+          this.$notify({
+            title: 'Success',
+            message: 'Login succesfull',
+            type: 'success'
+          })
+          console.log('objectxvxc')
         })
 
         // userService

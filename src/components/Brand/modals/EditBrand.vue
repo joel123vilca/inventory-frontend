@@ -7,16 +7,22 @@
     :show-close="false"
   >
     <el-form
-      :model="form"
+      ref="brand"
+      :model="brand"
       class="formulario-creación"
       :label-position="labelPosition"
+      status-icon
+      :rules="rules"
     >
       <el-container>
         <el-row>
           <el-col :span="24">
             <el-form-item
-              label="Nombre"
+              label="Name"
+              prop="name"
               :label-width="formLabelWidth"
+              :show-message="submitErrors.name"
+              :error="submitErrors.name ? submitErrors.name[0] : ''"
             >
               <el-input
                 v-model="brand.name"
@@ -44,7 +50,7 @@
       <el-button
         type="primary"
         icon="el-icon-check"
-        @click="enviar()"
+        @click="enviar('brand')"
       >
         Guardar
       </el-button>
@@ -62,7 +68,17 @@ export default {
       form: new Form({
         name: ''
       }),
-      formLabelWidth: '120px'
+      formLabelWidth: '120px',
+      submitErrors: {},
+      rules: {
+        name: [
+          {
+            required: true,
+            message: 'Name is required',
+            trigger: 'change'
+          }
+        ]
+      }
     }
   },
   computed: {
@@ -76,11 +92,19 @@ export default {
         this.form.clear()
       })
     },
-    enviar () {
-      this.form.id = this.brand.id
-      this.form.name = this.brand.name
-      this.updateBrand(this.form).then(() => {
-        this.$swal.fire('', 'La marca ha sido actualizada', 'success')
+    enviar (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          console.log('asdas')
+          this.form.id = this.brand.id
+          this.form.name = this.brand.name
+          this.updateBrand(this.form).then(() => {
+            this.$swal.fire('', 'La marca ha sido actualizada', 'success')
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
       })
     }
   }

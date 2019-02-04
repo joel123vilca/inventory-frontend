@@ -6,15 +6,19 @@
     :show-close="false"
   >
     <el-form
-      :model="form"
+      ref="product"
+      :model="product"
       class="formulario-creación"
       :label-position="labelPosition"
+      status-icon
+      :rules="rules"
     >
       <el-container>
         <el-row :gutter="30">
           <el-col :span="12">
             <el-form-item
               label="Part number"
+              prop="part_number"
               :label-width="formLabelWidth"
             >
               <el-input
@@ -32,7 +36,8 @@
 
           <el-col :span="12">
             <el-form-item
-              label="Código"
+              label="Code"
+              prop="code"
               :label-width="formLabelWidth"
             >
               <el-input
@@ -49,7 +54,8 @@
 
           <el-col :span="12">
             <el-form-item
-              label="Nombre"
+              label="Name"
+              prop="name"
               :label-width="formLabelWidth"
             >
               <el-input
@@ -66,7 +72,8 @@
 
           <el-col :span="12">
             <el-form-item
-              label="Categoría"
+              label="Category"
+              prop="category"
               :label-width="formLabelWidth"
             >
               <el-input
@@ -111,7 +118,8 @@
 
           <el-col :span="12">
             <el-form-item
-              label="Marca"
+              label="Brand"
+              prop="brand"
               :label-width="formLabelWidth"
             >
               <el-select
@@ -137,7 +145,8 @@
 
           <el-col :span="12">
             <el-form-item
-              label="Descripción"
+              label="Description"
+              prop="description"
               :label-width="formLabelWidth"
             >
               <el-input
@@ -154,7 +163,8 @@
 
           <el-col :span="12">
             <el-form-item
-              label="Precio"
+              label="Price"
+              prop="price"
               :label-width="formLabelWidth"
             >
               <el-input
@@ -173,6 +183,7 @@
           <el-col :span="12">
             <el-form-item
               label="Color"
+              prop="color"
               :label-width="formLabelWidth"
             >
               <el-input
@@ -190,7 +201,8 @@
 
           <el-col :span="12">
             <el-form-item
-              label="Color"
+              label="Transport guide"
+              prop="transport_guide"
               :label-width="formLabelWidth"
             >
               <el-input
@@ -219,7 +231,7 @@
       <el-button
         type="primary"
         icon="el-icon-check"
-        @click="enviar()"
+        @click="enviar('product')"
       >
         Guardar
       </el-button>
@@ -247,9 +259,77 @@ export default {
         color: '',
         transport_guide: ''
       }),
-      formLabelWidth: '120px'
+      formLabelWidth: '120px',
+      rules: {
+        part_number: [
+          {
+            required: true,
+            message: 'Part number is required',
+            trigger: 'change'
+          }
+        ],
+        code: [
+          {
+            required: true,
+            message: 'Code is required',
+            trigger: 'change'
+          }
+        ],
+        name: [
+          {
+            required: true,
+            message: 'Name is required',
+            trigger: 'change'
+          }
+        ],
+        category: [
+          {
+            required: true,
+            message: 'Category is required',
+            trigger: 'change'
+          }
+        ],
+        price: [
+          {
+            required: true,
+            message: 'Price is required',
+            trigger: 'change'
+          }
+        ],
+        description: [
+          {
+            required: true,
+            message: 'Description is required',
+            trigger: 'change'
+          }
+        ],
+        color: [
+          {
+            required: true,
+            message: 'Color is required',
+            trigger: 'change'
+          }
+        ],
+        transport_guide: [
+          {
+            required: true,
+            message: 'Transport guide is required',
+            trigger: 'change'
+          }
+        ],
+
+        brand_id: [
+          {
+            required: true,
+            message: 'Brand is required',
+            trigger: 'change'
+          }
+        ]
+
+      }
     }
   },
+
   computed: {
     ...mapState('products', ['product', 'modalOpenEdit']),
     ...mapState('brands', ['brands']),
@@ -263,20 +343,27 @@ export default {
         this.form.reset()
       })
     },
-    enviar () {
-      this.form.id = this.product.id
-      this.form.name = this.product.name
-      this.form.part_number = this.product.part_number
-      this.form.code = this.product.code
-      this.form.category = this.product.category
-      this.form.price = this.product.price
-      this.form.description = this.product.description
-      this.form.area_id = this.product.area.id
-      this.form.brand_id = this.product.brand.id
-      this.form.color = this.product.color
-      this.form.transport_guide = this.product.transport_guide
-      this.updateProduct(this.form).then(() => {
-        this.$swal.fire('', 'El producto ha sido actualizado', 'success')
+    enviar (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.form.id = this.product.id
+          this.form.name = this.product.name
+          this.form.part_number = this.product.part_number
+          this.form.code = this.product.code
+          this.form.category = this.product.category
+          this.form.price = this.product.price
+          this.form.description = this.product.description
+          this.form.area_id = this.product.area.id
+          this.form.brand_id = this.product.brand.id
+          this.form.color = this.product.color
+          this.form.transport_guide = this.product.transport_guide
+          this.updateProduct(this.form).then(() => {
+            this.$swal.fire('', 'El producto ha sido actualizado', 'success')
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
       })
     }
   }
@@ -284,4 +371,7 @@ export default {
 </script>
 
 <style>
+.help-block.invalid-feedback {
+  display: block;
+}
 </style>

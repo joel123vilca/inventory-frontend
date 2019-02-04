@@ -121,8 +121,12 @@ export default {
             user_id: 1
           }
           if (result.value) {
+            console.log('dsfsdfsdfds1213')
             this.createCheck(id).then(() => {
               this.$swal.fire('', 'El check ha sido creado', 'success')
+              const checkId = this.checkId
+              console.log('hola mundo checkid')
+              console.log(this.checkId)
               const Id = this.area.id
               this.$router.push({ name: 'AddCheck', params: { Id } })
             })

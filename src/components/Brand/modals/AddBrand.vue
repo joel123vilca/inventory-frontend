@@ -1,27 +1,34 @@
 <template>
   <el-dialog
-    title="Nueva marca"
+    title="Add brand"
     :visible.sync="modalOpenCreate"
     :close-on-click-modal="false"
     center
     :show-close="false"
   >
     <el-form
+      ref="form"
       :model="form"
       class="formulario-creación"
       :label-position="labelPosition"
+      status-icon
+      :rules="rules"
     >
       <el-container>
         <el-row style="width:100%">
           <el-col :span="24">
             <el-form-item
-              label="Nombre"
+              label="Name"
+              prop="name"
               :label-width="formLabelWidth"
+              :show-message="submitErrors.name"
+              :error="submitErrors.name ? submitErrors.name[0] : ''"
             >
               <el-input
                 v-model="form.name"
                 autocomplete="off"
                 autofocus
+                @keyup.native="clearError('name')"
               />
               <has-error
                 :form="form"
@@ -64,7 +71,18 @@ export default {
       form: new Form({
         name: ''
       }),
-      formLabelWidth: '120px'
+      formLabelWidth: '120px',
+      submitErrors: {},
+      rules: {
+        name: [
+          {
+            required: true,
+            message: 'Name is required',
+            trigger: 'change'
+          }
+        ]
+      }
+
     }
   },
   computed: {

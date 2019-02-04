@@ -41,6 +41,7 @@ export default {
     })
   },
   postDetail (payload = {}) {
+    console.log(payload)
     return new Promise((resolve, reject) => {
       axios({
         url: `${HOST}/checks/${payload.check_id}/details`,

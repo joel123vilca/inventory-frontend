@@ -23,6 +23,7 @@ export const createMovement = ({ commit, dispatch }, payload) => {
       commit('UPDATE_STATE_MODAL_TRANSFER', false)
       // commit('UPDATE_STATE_LOADING_TABLE',true)
       dispatch('products/getProducts', null, { root: true })
+
     //    this.$swal("", "El producto ha sido actualizado", "success");
     })
     .catch(() => {

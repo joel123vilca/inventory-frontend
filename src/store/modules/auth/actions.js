@@ -9,6 +9,7 @@ export const login = ({ commit, dispatch }, payload) => {
       .login(payload)
       .then(user => {
         commit('loginSuccess', user)
+
         console.log('asdasdasdasasd')
         resolve(user)
       })

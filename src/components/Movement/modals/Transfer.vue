@@ -126,7 +126,10 @@ export default {
     ...mapActions('areas', ['getAreas']),
     createMovementSend () {
       this.form.id = this.product.id
-      this.createMovement(this.form)
+      this.createMovement(this.form).then(() => {
+        this.$swal.fire('', ` El ${this.product.name} se ha movido con éxito`, 'success')
+        this.$router.push('/movements/')
+      })
     }
   }
 
