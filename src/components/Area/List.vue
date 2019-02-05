@@ -13,8 +13,8 @@
       </button>
       <div class="form-inline">
         <input
-          class="form-control mr-sm-2"
           v-model="search"
+          class="form-control mr-sm-2"
           type="search"
           placeholder="Search"
           aria-label="Search"

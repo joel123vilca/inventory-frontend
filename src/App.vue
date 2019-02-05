@@ -96,8 +96,12 @@ export default {
 .el-menu {
   border-right: 0 !important;
 }
+.el-header {
+  background-color: red !important;
+}
 .el-main {
   background: #eef1f4;
+  padding: 0 !important;
 }
 .breadcrumb-container {
   margin-top: 20px;

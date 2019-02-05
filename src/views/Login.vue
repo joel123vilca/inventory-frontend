@@ -1,54 +1,86 @@
 <template>
   <el-row>
-    <el-col :span="12">
+    <el-col
+      :span="16"
+      class="hidden-md-and-down"
+    >
       <img
-        src="@/assets/logo.png"
+        src="@/assets/inventario.jpg"
         width="100%"
       >
     </el-col>
-    <el-col :span="12">
-      <el-form
-        ref="loginForm"
-        :model="loginForm"
-        status-icon
-        :rules="rules"
-        label-width="120px"
-      >
-        <el-form-item
-          label="User"
-          prop="username"
-          :show-message="submitErrorsLogin.username "
-          :error="submitErrorsLogin.username ? submitErrorsLogin.username[0] : ''"
-        >
-          <el-input
-            v-model="loginForm.username"
-            @keyup.native="clearError('username')"
-          />
-        </el-form-item>
-
-        <el-form-item
-          label="Password"
-          prop="password"
-          :show-message="submitErrors.password"
-          :error="submitErrors.password ? submitErrors.password[0] : ''"
-        >
-          <el-input
-            v-model="loginForm.password"
-            type="password"
-            autocomplete="off"
-            @keyup.native="clearError('password')"
-          />
-        </el-form-item>
-
-        <el-form-item>
-          <el-button
-            type="primary"
-            @click="submitForm('loginForm')"
+    <el-col
+      :span="8"
+      :xs="24"
+    >
+      <el-row class="testing1">
+        <el-col :span="24">
+          <img
+            src="@/assets/logo.png"
+            width="10%"
+            style="display: block;
+    margin: 0 auto;"
           >
-            Login
-          </el-button>
-        </el-form-item>
-      </el-form>
+        </el-col>
+        <el-col :span="24">
+          <p style="text-align:center">
+            Sistema de inventario
+          </p>
+        </el-col>
+
+        <el-col
+          :span="20"
+          :offset="2"
+          justify="center"
+          class="testing"
+        >
+          <el-form
+            ref="loginForm"
+            :model="loginForm"
+            status-icon
+            :rules="rules"
+            label-width="100px"
+            :label-position="labelPosition"
+          >
+            <el-form-item
+              label="User"
+              prop="username"
+              :show-message="submitErrorsLogin.username "
+              :error="submitErrorsLogin.username ? submitErrorsLogin.username[0] : ''"
+            >
+              <el-input
+                v-model="loginForm.username"
+                @keyup.native="clearError('username')"
+              />
+            </el-form-item>
+
+            <el-form-item
+              label="Password"
+              prop="password"
+              :show-message="submitErrors.password"
+              :error="submitErrors.password ? submitErrors.password[0] : ''"
+            >
+              <el-input
+                v-model="loginForm.password"
+                type="password"
+                autocomplete="off"
+                @keyup.native="clearError('password')"
+              />
+            </el-form-item>
+
+            <el-form-item>
+              <el-button
+                type="primary"
+                class="loginButton"
+                @click="submitForm('loginForm')"
+              >
+                Login
+              </el-button>
+            </el-form-item>
+          </el-form>
+        </el-col>
+        <el-col offset="2" />
+      </el-row>
     </el-col>
   </el-row>
 </template>
@@ -93,7 +125,8 @@ export default {
         ]
       },
 
-      submitErrors: {}
+      submitErrors: {},
+      labelPosition: 'left'
     }
   },
   created () {
@@ -134,18 +167,32 @@ export default {
           })
       })
     }
-
-    // clearError (nameError = null) {
-    //   if (nameError) {
-    //     this.submitErrors[nameError] = undefined
-    //     delete this.submitErrors[nameError]
-
-    //     return false
-    //   }
-
-    //   this.submitErrors = undefined
-    //   this.submitErrors = {}
-    // }
   }
 }
 </script>
+<style scoped>
+.el-main.contenedor-principal {
+  background: white;
+  padding: 0;
+}
+.loginButton {
+  width: 100%;
+}
+.testing {
+  margin-top: 10%;
+}
+.testing1 {
+  margin-top: 25%;
+}
+@media only screen and (max-width: 600px) {
+  .testing {
+    margin-top: 45px;
+  }
+  .testing1 {
+    margin-top: 25px;
+  }
+}
+/* .el-input {
+  width: 50%;
+} */
+</style>
