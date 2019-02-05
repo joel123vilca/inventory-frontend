@@ -16,8 +16,8 @@
       <el-row class="testing1">
         <el-col :span="24">
           <img
-            src="@/assets/logo.png"
-            width="10%"
+            src="@/assets/logo_face.png"
+            width="15%"
             style="display: block;
     margin: 0 auto;"
           >
@@ -183,6 +183,9 @@ export default {
 }
 .testing1 {
   margin-top: 25%;
+}
+.el-main.contenedor-principal {
+  background: white;
 }
 @media only screen and (max-width: 600px) {
   .testing {

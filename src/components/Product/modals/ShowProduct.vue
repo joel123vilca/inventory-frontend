@@ -4,6 +4,7 @@
     :visible.sync="modalOpenShow"
     :close-on-click-modal="false"
     center
+    width="90%"
     :show-close="false"
   >
     <el-form
@@ -14,7 +15,10 @@
     >
       <el-container>
         <el-row :gutter="30">
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Part number"
               :label-width="formLabelWidth"
@@ -27,7 +31,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Código"
               :label-width="formLabelWidth"
@@ -39,7 +46,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Nombre"
               :label-width="formLabelWidth"
@@ -51,7 +61,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Categoría"
               :label-width="formLabelWidth"
@@ -64,7 +77,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Area"
               :label-width="formLabelWidth"
@@ -77,7 +93,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Marca"
               :label-width="formLabelWidth"
@@ -90,7 +109,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Descripción"
               :label-width="formLabelWidth"
@@ -102,7 +124,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Precio"
               :label-width="formLabelWidth"
@@ -115,7 +140,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Color"
               :label-width="formLabelWidth"
@@ -128,7 +156,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Color"
               :label-width="formLabelWidth"

@@ -100,7 +100,8 @@ export default {
   background-color: red !important;
 }
 .el-main {
-  background: #eef1f4;
+  /* background: #eef1f4; */
+  background-color: white;
   padding: 0 !important;
 }
 .breadcrumb-container {

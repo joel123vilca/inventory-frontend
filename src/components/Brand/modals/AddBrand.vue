@@ -5,6 +5,7 @@
     :close-on-click-modal="false"
     center
     :show-close="false"
+    class="brandModal"
   >
     <el-form
       ref="form"
@@ -128,5 +129,7 @@ export default {
 }
 .error-color {
   border-color: red;
+}
+.brandModal {
 }
 </style>

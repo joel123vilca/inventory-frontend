@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="Edit área"
+    title="Edit area"
     :visible="modalOpenEdit"
     :close-on-click-modal="false"
     center
@@ -177,5 +177,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.el-dialog {
+  width: 100%;
+}
 </style>

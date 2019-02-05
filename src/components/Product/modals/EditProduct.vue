@@ -1,9 +1,11 @@
 <template>
   <el-dialog
-    title="Editar producto"
+    title="Edit product"
     :visible.sync="modalOpenEdit"
     :close-on-click-modal="false"
     :show-close="false"
+    width="90%"
+    center
   >
     <el-form
       ref="product"
@@ -15,7 +17,10 @@
     >
       <el-container>
         <el-row :gutter="30">
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Part number"
               prop="part_number"
@@ -34,7 +39,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Code"
               prop="code"
@@ -52,7 +60,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Name"
               prop="name"
@@ -70,7 +81,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Category"
               prop="category"
@@ -89,7 +103,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Área"
               :label-width="formLabelWidth"
@@ -116,7 +133,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Brand"
               prop="brand"
@@ -143,7 +163,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Description"
               prop="description"
@@ -161,7 +184,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Price"
               prop="price"
@@ -180,7 +206,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Color"
               prop="color"
@@ -199,7 +228,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Transport guide"
               prop="transport_guide"

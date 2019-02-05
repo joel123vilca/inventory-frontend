@@ -18,7 +18,10 @@
     >
       <el-container>
         <el-row :gutter="30">
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Part number"
               prop="part_number"
@@ -40,7 +43,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Code"
               prop="code"
@@ -62,7 +68,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Name"
               prop="name"
@@ -83,7 +92,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Categoría"
               prop="category"
@@ -105,7 +117,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Área"
               prop="area_id"
@@ -134,7 +149,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Brand"
               prop="brand_id"
@@ -163,7 +181,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Descriptión"
               prop="description"
@@ -184,7 +205,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Price"
               prop="price"
@@ -206,7 +230,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Color"
               prop="color"
@@ -228,7 +255,10 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
+          <el-col
+            :span="12"
+            :xs="24"
+          >
             <el-form-item
               label="Transport"
               :label-width="formLabelWidth"
@@ -332,7 +362,7 @@ export default {
         brand_id: [
           {
             required: true,
-            message: 'Area is required',
+            message: 'Brand is required',
             trigger: 'change'
           }
         ],

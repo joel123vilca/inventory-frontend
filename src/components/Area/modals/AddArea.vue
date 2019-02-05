@@ -5,6 +5,7 @@
     :close-on-click-modal="false"
     center
     :show-close="false"
+    :width="valor"
   >
     <el-form
       ref="form"
@@ -105,6 +106,7 @@ export default {
   data () {
     return {
       labelPosition: 'left',
+      valor: '90%',
       form: new Form({
         id: '',
         name: '',
