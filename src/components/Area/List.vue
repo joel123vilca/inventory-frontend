@@ -1,12 +1,26 @@
 <template>
   <div>
-    <nav class="navbar" >
-  <a class="navbar-brand">Areas</a>
-  <button class="btn btn-primary" type="submit" @click="modalCreate=!modalCreate">+ Añadir</button>
-  <div class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" v-model="search" aria-label="Search">
-  </div>
-  </nav>
+    <nav class="navbar">
+      <a class="navbar-brand">
+        Areas
+      </a>
+      <button
+        class="btn btn-primary"
+        type="submit"
+        @click="modalCreate=!modalCreate"
+      >
+        + Añadir
+      </button>
+      <div class="form-inline">
+        <input
+          class="form-control mr-sm-2"
+          v-model="search"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        >
+      </div>
+    </nav>
 
     <el-table
       v-loading="false"
@@ -90,7 +104,19 @@ export default {
     }
   },
   created () {
-    this.getAreas()
+    this.getAreas().then(() => {
+      this.$notify({
+        title: 'Success',
+        message: 'Areas were loaded succesfully',
+        type: 'success'
+      })
+    })
+      .catch(() => {
+        this.$notify.error({
+          title: 'Error',
+          message: 'A error ocurrs when loading data'
+        })
+      })
   },
   methods: {
     ...mapActions('areas', ['getAreas', 'getDetailArea', 'deleteArea']),
@@ -129,7 +155,7 @@ export default {
 </script>
 
 <style>
-.navbar{
-  background-color: #FFA940;
+.navbar {
+  background-color: #ffa940;
 }
 </style>

@@ -106,7 +106,19 @@ export default {
     ...mapState('movements', ['movements'])
   },
   created () {
-    this.getMovements()
+    this.getMovements().then(() => {
+      this.$notify({
+        title: 'Success',
+        message: 'Movements were loaded succesfully',
+        type: 'success'
+      })
+    })
+      .catch(() => {
+        this.$notify.error({
+          title: 'Error',
+          message: 'A error ocurrs when loading data'
+        })
+      })
   },
   methods: {
     ...mapActions('movements', ['getMovements']),

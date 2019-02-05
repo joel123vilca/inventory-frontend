@@ -51,7 +51,7 @@
       <el-button
         type="primary"
         icon="el-icon-check"
-        @click="saveBrand()"
+        @click="saveBrand('form')"
       >
         Guardar
       </el-button>
@@ -96,9 +96,25 @@ export default {
         this.form.clear()
       })
     },
-    saveBrand () {
-      this.createBrand(this.form).then(() => {
-        this.$swal.fire('', 'La marca ha sido creada', 'success')
+    saveBrand (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.createBrand(this.form).then(() => {
+            this.$swal.fire('', 'La marca ha sido creada', 'success')
+          }).catch(() => {
+            this.$notify.error({
+              title: 'Error',
+              message: 'This is an error message'
+            })
+          })
+        } else {
+          console.log('error submit!!')
+          this.$notify.error({
+            title: 'Error',
+            message: 'Verify the fields'
+          })
+          return false
+        }
       })
     }
   }

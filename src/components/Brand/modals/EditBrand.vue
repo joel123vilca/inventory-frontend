@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="Editar marca"
+    title="Edit brand"
     :visible="modalOpenEdit"
     :close-on-click-modal="false"
     center
@@ -100,9 +100,18 @@ export default {
           this.form.name = this.brand.name
           this.updateBrand(this.form).then(() => {
             this.$swal.fire('', 'La marca ha sido actualizada', 'success')
+          }).catch(() => {
+            this.$notify.error({
+              title: 'Error',
+              message: 'This is an error message'
+            })
           })
         } else {
           console.log('error submit!!')
+          this.$notify.error({
+            title: 'Error',
+            message: 'Verify the fields'
+          })
           return false
         }
       })

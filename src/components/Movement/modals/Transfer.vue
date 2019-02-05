@@ -20,10 +20,10 @@
             >
               <el-input
                 v-model="product.name"
-                :class="form.errors.has('name') ? 'error-color' : ''"
                 autocomplete="off"
                 autofocus
                 disabled
+                :class="form.errors.has('name') ? 'error-color' : ''"
               />
               <has-error
                 :form="form"
@@ -129,6 +129,11 @@ export default {
       this.createMovement(this.form).then(() => {
         this.$swal.fire('', ` El ${this.product.name} se ha movido con éxito`, 'success')
         this.$router.push('/movements/')
+      }).catch(() => {
+        this.$notify.error({
+          title: 'Error',
+          message: 'This is an error message'
+        })
       })
     }
   }

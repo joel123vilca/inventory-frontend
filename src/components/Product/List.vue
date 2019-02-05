@@ -173,7 +173,19 @@ export default {
     }
   },
   created () {
-    this.getProducts()
+    this.getProducts().then(() => {
+      this.$notify({
+        title: 'Success',
+        message: 'Products were loaded succesfully',
+        type: 'success'
+      })
+    })
+      .catch(() => {
+        this.$notify.error({
+          title: 'Error',
+          message: 'A error ocurrs when loading data'
+        })
+      })
     this.getBrands()
     this.getAreas()
   },

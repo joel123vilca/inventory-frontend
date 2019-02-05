@@ -3,7 +3,7 @@
     <el-container>
       <Aside v-if="status.loggedIn" />
       <el-container>
-        <el-header>
+        <el-header v-if="status.loggedIn">
           <Header v-if="status.loggedIn" />
         </el-header>
         <el-main class="contenedor-principal">

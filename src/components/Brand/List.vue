@@ -129,7 +129,19 @@ export default {
     }
   },
   created () {
-    this.getBrands()
+    this.getBrands().then(() => {
+      this.$notify({
+        title: 'Success',
+        message: 'Brands were loaded succesfully',
+        type: 'success'
+      })
+    })
+      .catch(() => {
+        this.$notify.error({
+          title: 'Error',
+          message: 'A error ocurrs when loading data'
+        })
+      })
   },
   methods: {
     ...mapActions('brands', ['getBrands', 'getDetailBrand', 'deleteBrand']),

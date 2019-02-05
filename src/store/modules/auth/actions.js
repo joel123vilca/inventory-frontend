@@ -17,7 +17,11 @@ export const login = ({ commit, dispatch }, payload) => {
         console.log(error.response.data.errors.username)
         console.log(error.response.data.errors)
         commit('loginFailure', error)
+
         dispatch('alerts/error', error.response.data.errors.username, { root: true })
+        dispatch('users/getAllErrors2', error.response.data.errors, { root: true })
+        //
+        // this.submitErrors = error.response.data.errors || {}
         reject(error)
       })
   })

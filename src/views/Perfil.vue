@@ -15,10 +15,18 @@ export default {
     cerrarSesión () {
       this.logout().then(() => {
         this.$router.push('/login')
+        this.$notify({
+          title: 'Success',
+          message: 'Logout succesfull',
+          type: 'success'
+        })
       })
-      //   this.$store.dispatch("auth/logout").then(() => {
-      //     this.$router.push("/login");
-      //   });
+        .catch(() => {
+          this.$notify.error({
+            title: 'Error',
+            message: 'An error ocurrss while logout process'
+          })
+        })
     }
   }
 }

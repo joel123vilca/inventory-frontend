@@ -1,22 +1,28 @@
 <template>
   <el-dialog
-    title="Editar área"
+    title="Edit área"
     :visible="modalOpenEdit"
     :close-on-click-modal="false"
     center
     :show-close="false"
   >
     <el-form
-      :model="form"
+      ref="area"
+      :model="area"
       class="formulario-creación"
       :label-position="labelPosition"
+      status-icon
+      :rules="rules"
     >
       <el-container>
         <el-row>
           <el-col :span="24">
             <el-form-item
-              label="Nombre"
+              label="Name"
+              prop="name"
               :label-width="formLabelWidth"
+              :show-message="submitErrors.name"
+              :error="submitErrors.name ? submitErrors.name[0] : ''"
             >
               <el-input
                 v-model="area.name"
@@ -31,7 +37,10 @@
             </el-form-item>
             <el-form-item
               label="Encargado"
+              prop="person_in_charge"
               :label-width="formLabelWidth"
+              :show-message="submitErrors.person_in_charge"
+              :error="submitErrors.person_in_charge ? submitErrors.person_in_charge[0] : ''"
             >
               <el-input
                 v-model="area.person_in_charge"
@@ -45,8 +54,11 @@
               />
             </el-form-item>
             <el-form-item
-              label="Codigo"
+              label="Code"
+              prop="code"
               :label-width="formLabelWidth"
+              :show-message="submitErrors.code"
+              :error="submitErrors.code ? submitErrors.code[0] : ''"
             >
               <el-input
                 v-model="area.code"
@@ -74,7 +86,7 @@
       <el-button
         type="primary"
         icon="el-icon-check"
-        @click="enviar()"
+        @click="enviar('area')"
       >
         Guardar
       </el-button>
@@ -96,7 +108,31 @@ export default {
         person_in_charge: '',
         code: ''
       }),
-      formLabelWidth: '120px'
+      formLabelWidth: '120px',
+      submitErrors: {},
+      rules: {
+        name: [
+          {
+            required: true,
+            message: 'Name is required',
+            trigger: 'change'
+          }
+        ],
+        person_in_charge: [
+          {
+            required: true,
+            message: 'Person in charge is required',
+            trigger: 'change'
+          }
+        ],
+        code: [
+          {
+            required: true,
+            message: 'Code is required',
+            trigger: 'change'
+          }
+        ]
+      }
     }
   },
   computed: {
@@ -110,15 +146,32 @@ export default {
         this.form.clear()
       })
     },
-    enviar () {
-      this.form.id = this.area.id
-      this.form.name = this.area.name
-      this.form.person_in_charge = this.area.person_in_charge
-      this.form.code = this.area.code
-      this.updateArea(this.form).then(() => {
-        this.$swal.fire('', 'El área ha sido actualizada', 'success')
+    enviar (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.form.id = this.area.id
+          this.form.name = this.area.name
+          this.form.person_in_charge = this.area.person_in_charge
+          this.form.code = this.area.code
+          this.updateArea(this.form).then(() => {
+            this.$swal.fire('', 'El área ha sido actualizada', 'success')
+          }).catch(() => {
+            this.$notify.error({
+              title: 'Error',
+              message: 'This is an error message'
+            })
+          })
+        } else {
+          console.log('error submit!!')
+          this.$notify.error({
+            title: 'Error',
+            message: 'Verify the fields'
+          })
+          return false
+        }
       })
     }
+
   }
 
 }

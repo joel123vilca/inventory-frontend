@@ -385,9 +385,18 @@ export default {
         if (valid) {
           this.createProduct(this.form).then(() => {
             this.$swal.fire('', 'El producto ha sido creado', 'success')
+          }).catch(() => {
+            this.$notify.error({
+              title: 'Error',
+              message: 'This is an error message 3'
+            })
           })
         } else {
           console.log('error submit!!')
+          this.$notify.error({
+            title: 'Error',
+            message: 'Verify the fields'
+          })
           return false
         }
       })

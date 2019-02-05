@@ -1,7 +1,5 @@
 <template>
- <nav class="navbar navbar-light bg-light">
-
-</nav>
+  <nav class="navbar navbar-light bg-light" />
 </template>
 
 <script>

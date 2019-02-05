@@ -1,9 +1,12 @@
 <template>
   <el-row>
-    <el-col
-      :span="8"
-      :offset="8"
-    >
+    <el-col :span="12">
+      <img
+        src="@/assets/logo.png"
+        width="100%"
+      >
+    </el-col>
+    <el-col :span="12">
       <el-form
         ref="loginForm"
         :model="loginForm"
@@ -14,8 +17,8 @@
         <el-form-item
           label="User"
           prop="username"
-          :show-message="submitErrors.username"
-          :error="submitErrors.username ? submitErrors.username[0] : ''"
+          :show-message="submitErrorsLogin.username "
+          :error="submitErrorsLogin.username ? submitErrorsLogin.username[0] : ''"
         >
           <el-input
             v-model="loginForm.username"
@@ -44,9 +47,6 @@
           >
             Login
           </el-button>
-          <el-button @click="resetForm('loginForm')">
-            Reset
-          </el-button>
         </el-form-item>
       </el-form>
     </el-col>
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { userService } from '@/api/user.js'
+// import { userService } from '@/api/user.js'
 import { mapActions, mapState } from 'vuex'
 
 export default {
@@ -104,10 +104,12 @@ export default {
     }
   },
   computed: {
-    ...mapState('auth', ['status'])
+    ...mapState('auth', ['status']),
+    ...mapState('users', ['submitErrorsLogin'])
   },
   methods: {
     ...mapActions('auth', ['login']),
+    ...mapActions('users', ['clearError']),
     submitForm (formName) {
       this.$refs[formName].validate(valid => {
         if (!valid) return false
@@ -123,36 +125,27 @@ export default {
             message: 'Login succesfull',
             type: 'success'
           })
-          console.log('objectxvxc')
         })
-
-        // userService
-        //   .login()
-        //   .then(response => {
-        //     this.$router.push({ name: 'home' })
-        //   })
-        //   .catch(error => {
-        //     this.submitErrors = error.response.data.errors || {}
-        //   })
+          .catch(() => {
+            this.$notify.error({
+              title: 'Error',
+              message: 'This is an error message'
+            })
+          })
       })
-    },
-
-    clearError (nameError = null) {
-      if (nameError) {
-        this.submitErrors[nameError] = undefined
-        delete this.submitErrors[nameError]
-
-        return false
-      }
-
-      this.submitErrors = undefined
-      this.submitErrors = {}
-    },
-
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
-      this.clearError()
     }
+
+    // clearError (nameError = null) {
+    //   if (nameError) {
+    //     this.submitErrors[nameError] = undefined
+    //     delete this.submitErrors[nameError]
+
+    //     return false
+    //   }
+
+    //   this.submitErrors = undefined
+    //   this.submitErrors = {}
+    // }
   }
 }
 </script>

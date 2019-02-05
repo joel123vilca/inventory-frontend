@@ -99,6 +99,7 @@ export default {
   methods: {
     ...mapActions('checks', ['getChecks', 'createCheck']),
     ...mapActions('areas', ['getDetailArea']),
+    ...mapActions('products', ['getProductsByArea']),
     handleDetail (index, row) {
       var id = row.id
       this.$router.push({ name: 'details', params: { id } })

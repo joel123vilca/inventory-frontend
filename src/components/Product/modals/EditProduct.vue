@@ -359,9 +359,18 @@ export default {
           this.form.transport_guide = this.product.transport_guide
           this.updateProduct(this.form).then(() => {
             this.$swal.fire('', 'El producto ha sido actualizado', 'success')
+          }).catch(() => {
+            this.$notify.error({
+              title: 'Error',
+              message: 'This is an error message'
+            })
           })
         } else {
           console.log('error submit!!')
+          this.$notify.error({
+            title: 'Error',
+            message: 'Verify the fields'
+          })
           return false
         }
       })

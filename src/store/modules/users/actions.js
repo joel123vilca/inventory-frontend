@@ -8,3 +8,16 @@ export const getAll = ({ commit }) => {
       error => commit('getAllFailure', error)
     )
 }
+export const getAllErrors2 = ({ commit }, value) => {
+  // console.log(value)
+  commit('getAllErrors', value)
+}
+
+export const clearError = ({ commit }, nameError = {}) => {
+  if (nameError) {
+    commit('clearError', nameError)
+    return false
+  }
+
+  commit('clearAllError')
+}
