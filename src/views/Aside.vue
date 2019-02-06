@@ -1,12 +1,6 @@
 <template>
-  <el-aside width="230px">
-    <div class="logo-container">
-      <img
-        src="http://idw.com.pe/image/logo.png"
-        class="image"
-      >
-    </div>
-
+  <div class="hidden-xs-only">
+  <el-aside width="230px" >
     <el-menu
       default-active="5"
       class="el-menu-vertical-demo"
@@ -75,9 +69,11 @@
       </el-menu-item>
     </el-menu>
   </el-aside>
+  </div>
 </template>
 
 <script>
+import 'element-ui/lib/theme-chalk/display.css';
 import { mapState, mapActions } from 'vuex'
 export default {
   computed: {

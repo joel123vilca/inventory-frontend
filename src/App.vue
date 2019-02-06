@@ -1,11 +1,9 @@
 <template>
   <div id="app">
     <el-container>
-      <Aside v-if="status.loggedIn" />
+        <Menu v-if="status.loggedIn" />
+    <Aside v-if="status.loggedIn" />
       <el-container>
-        <el-header v-if="status.loggedIn">
-          <Header v-if="status.loggedIn" />
-        </el-header>
         <el-main class="contenedor-principal">
           <div
             v-if="message"
@@ -27,13 +25,15 @@
 import Aside from '@/views/Aside'
 import Header from '@/views/Header'
 import Main from '@/views/Main'
+import Menu from '@/views/Menu'
 import axios from 'axios'
 import { mapState } from 'vuex'
 export default {
   components: {
     Aside,
     Header,
-    Main
+    Main,
+    Menu
   },
   data () {
     return {
@@ -102,9 +102,10 @@ export default {
 .el-menu {
   border-right: 0 !important;
 }
-.el-header {
-  /* background-color: red !important; */
+body{
+  padding-top: 70px;
 }
+
 .el-main {
   /* background: #eef1f4; */
   background-color: white;
