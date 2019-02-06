@@ -70,7 +70,7 @@ export default {
   data () {
     return {
       labelPosition: 'left',
-      widthWindow: '',
+      widthWindow: `${window.innerWidth < 380 ? '90%' : ''}`,
       form: new Form({
         name: ''
       }),
@@ -108,10 +108,12 @@ export default {
     handleResize () {
       if (this.$currentViewport.label === 'mobile' || this.$currentViewport.label === 'tablet') {
         // from 768px (included) to 1024px (excluded)
+        console.log(this.$currentViewport.rule)
         this.widthWindow = '90%'
         console.log('esats vista')
       } else {
         this.widthWindow = '50%'
+        console.log(this.$currentViewport.rule)
         // anything else
       }
     },

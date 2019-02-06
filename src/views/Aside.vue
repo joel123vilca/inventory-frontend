@@ -8,7 +8,7 @@
     </div>
 
     <el-menu
-      default-active="1"
+      default-active="5"
       class="el-menu-vertical-demo"
       :router="true"
     >

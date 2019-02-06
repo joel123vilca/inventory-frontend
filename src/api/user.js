@@ -20,14 +20,18 @@ function login (payload = {}) {
     })
       .then(resp => {
         const token = resp.data.token
+
         const user = resp.data.user
+        console.log(token)
+        console.log('xD')
 
         localStorage.setItem('token', token)
-        localStorage.setItem('user', user)
+        // localStorage.setItem('user.email', user.email)
+        // localStorage.setItem('user', JSON.stringify(user))
 
         axios.defaults.headers.common['Authorization'] = `Bearer${token}`
 
-        resolve(resp)
+        resolve(resp.data.user)
       })
       .catch(err => {
         localStorage.removeItem('token')

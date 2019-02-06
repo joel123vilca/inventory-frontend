@@ -38,6 +38,12 @@
       <el-table-column
         label="Encargado"
         prop="person_in_charge"
+        class-name="hidden-md-and-down"
+      />
+      <el-table-column
+        label="Code"
+        prop="code"
+        class-name="hidden-md-and-down"
       />
       <el-table-column label="Acciones">
         <template slot-scope="scope">

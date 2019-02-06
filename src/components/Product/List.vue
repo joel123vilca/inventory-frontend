@@ -20,9 +20,7 @@
             round
             icon="el-icon-plus"
             @click="modalCreate=!modalCreate"
-          >
-            Añadir
-          </el-button>
+          />
         </el-col>
         <el-col :span="3">
           <download-excel
@@ -70,16 +68,19 @@
       <el-table-column
         label="Categoria"
         prop="category"
+        class-name="hidden-md-and-down"
       />
       <el-table-column
         label="Marca"
         prop="brand.name"
         sortable
+        class-name="hidden-md-and-down"
       />
       <el-table-column
         label="Area"
         prop="area.name"
         sortable
+        class="hidden-md-and-up"
       />
       <el-table-column label="Acciones">
         <template slot-scope="scope">

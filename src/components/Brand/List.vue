@@ -20,9 +20,7 @@
             round
             icon="el-icon-plus"
             @click="modalCreate=!modalCreate"
-          >
-            Añadir
-          </el-button>
+          />
         </el-col>
         <el-col :span="3">
           <download-excel

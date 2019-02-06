@@ -1,11 +1,16 @@
 <template>
   <div>
-    <p>Bienvenido a Inventario IDW</p>
+    <p>Bienvenido a Inventario IDW {{ user.email }}</p>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+export default {
+  computed: {
+    ...mapState('auth', ['user'])
+  }
+}
 </script>
 
 <style>

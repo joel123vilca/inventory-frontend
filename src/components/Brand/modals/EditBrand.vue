@@ -66,7 +66,7 @@ export default {
   data () {
     return {
       labelPosition: 'left',
-      widthWindow: '',
+      widthWindow: `${window.innerWidth < 380 ? '90%' : ''}`,
       form: new Form({
         name: ''
       }),
@@ -82,6 +82,9 @@ export default {
         ]
       }
     }
+  },
+  created () {
+    console.log(this.$currentViewport)
   },
   computed: {
     ...mapState('brands', ['modalOpenEdit', 'brand'])

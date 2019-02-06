@@ -103,7 +103,7 @@ export default {
   data () {
     return {
       labelPosition: 'left',
-      widthWindow: '',
+      widthWindow: `${window.innerWidth < 380 ? '90%' : ''}`,
       form: new Form({
         id: '',
         name: '',

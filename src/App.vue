@@ -53,11 +53,17 @@ export default {
   },
   created () {
     axios.interceptors.response.use(undefined, function (err) {
+      console.log('afas')
       return new Promise(function () {
-        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+        console.log(err.response.status)
+        if (err.response.status === 401 && err.config && !err.config.__isRetryRequest) {
           // if you ever get an unauthorized, logout the user
-          this.$store.dispatch('auth/logout')
-          this.$router.push('/login')
+          console.log('sadasdassadasdasdsd')
+          console.log('axxxxxxxxx')
+          console.log(this.$store)
+          // $store.dispatch('auth/logout', { root: true })
+          console.log('1234')
+          this.$router.push('/brands')
           // you can also redirect to /login if needed !
         }
         throw err
@@ -97,7 +103,7 @@ export default {
   border-right: 0 !important;
 }
 .el-header {
-  background-color: red !important;
+  /* background-color: red !important; */
 }
 .el-main {
   /* background: #eef1f4; */
