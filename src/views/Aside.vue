@@ -69,7 +69,7 @@
       </el-menu-item>
     </el-menu>
   </el-aside>
-  </div>
+  </div>  
 </template>
 
 <script>
