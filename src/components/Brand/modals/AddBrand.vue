@@ -6,6 +6,7 @@
     center
     :show-close="false"
     class="brandModal"
+    :width="widthWindow"
   >
     <el-form
       ref="form"
@@ -69,6 +70,7 @@ export default {
   data () {
     return {
       labelPosition: 'left',
+      widthWindow: '',
       form: new Form({
         name: ''
       }),
@@ -89,6 +91,12 @@ export default {
   computed: {
     ...mapState('brands', ['modalOpenCreate'])
   },
+  mounted: function () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('resize', this.handleResize)
+  },
   methods: {
     ...mapActions('brands', ['createBrand', 'updateStateModal']),
     closeModal () {
@@ -96,6 +104,16 @@ export default {
         this.form.reset()
         this.form.clear()
       })
+    },
+    handleResize () {
+      if (this.$currentViewport.label === 'mobile' || this.$currentViewport.label === 'tablet') {
+        // from 768px (included) to 1024px (excluded)
+        this.widthWindow = '90%'
+        console.log('esats vista')
+      } else {
+        this.widthWindow = '50%'
+        // anything else
+      }
     },
     saveBrand (formName) {
       this.$refs[formName].validate((valid) => {

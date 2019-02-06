@@ -118,11 +118,20 @@ export default {
         })
       })
   },
+  mounted: function () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('resize', this.handleResize)
+  },
   methods: {
     ...mapActions('areas', ['getAreas', 'getDetailArea', 'deleteArea']),
     handleEdit (index, row) {
       this.getDetailArea(row.id)
       this.modalEdit = !this.modalEdit
+    },
+    handleResize () {
+
     },
     handleDelete (index, row) {
       this.$swal
@@ -157,5 +166,11 @@ export default {
 <style scoped>
 .navbar {
   background-color: #ffa940;
+}
+.el-dialog {
+  width: 100%;
+}
+.el-dialog.el-dialog--center.testing {
+  width: 100% !important;
 }
 </style>

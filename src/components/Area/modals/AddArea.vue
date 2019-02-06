@@ -5,7 +5,8 @@
     :close-on-click-modal="false"
     center
     :show-close="false"
-    :width="valor"
+    custom-class="testing"
+    :width="widthWindow"
   >
     <el-form
       ref="form"
@@ -106,7 +107,7 @@ export default {
   data () {
     return {
       labelPosition: 'left',
-      valor: '90%',
+      widthWindow: '',
       form: new Form({
         id: '',
         name: '',
@@ -148,6 +149,17 @@ export default {
         this.form.clear()
       })
     },
+    handleResize () {
+      if (this.$currentViewport.label === 'mobile' || this.$currentViewport.label === 'tablet') {
+        // from 768px (included) to 1024px (excluded)
+        this.widthWindow = '90%'
+        console.log('esats vista')
+      } else {
+        this.widthWindow = '50%'
+        // anything else
+      }
+    },
+
     saveArea (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -173,6 +185,12 @@ export default {
 
   computed: {
     ...mapState('areas', ['modalOpenCreate'])
+  },
+  mounted: function () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('resize', this.handleResize)
   }
 }
 </script>
@@ -180,5 +198,11 @@ export default {
 <style scoped>
 .el-row {
   width: 100%;
+}
+.el-dialog--center {
+  width: 100% !important;
+}
+.el-dialog.el-dialog--center.testing {
+  width: 100% !important;
 }
 </style>
